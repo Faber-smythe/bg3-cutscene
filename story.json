@@ -1,0 +1,1830 @@
+{
+  "meta": {
+    "title": "On the hunt for oneself",
+    "title_fr": "En chasse de soi-même",
+    "version": "0.1"
+  },
+  "assets": {
+    "soundEffects": {
+      "wakeup_sigh": "assets/audio/final_sigh.mp3",
+      "ven_holds_blast": "assets/audio/ven_holds_blast.mp3",
+      "ven_flies": "assets/audio/ven_flies.mp3",
+      "scratch_bark": "assets/audio/scratch_bark.mp3"
+    },
+    "soundtracks": {
+      "night_ambient": "assets/audio/night_ambient.mp3",
+      "lurking": "assets/audio/the_cult_of_the_absolute.mp3",
+      "tensed_exchange": "assets/audio/quest_for_a_cure.mp3",
+      "resolution": "assets/audio/i_want_to_live_instrumental.mp3"
+    },
+    "backgrounds": {
+      "default": "assets/backgrounds/default.jpg",
+      "intro": "assets/backgrounds/intro.jpg",
+      "campfire": "assets/backgrounds/campfire.jpg",
+      "wyllIsUp": "assets/backgrounds/wyll_is_up.jpg",
+      "wyllEntersBushes": "assets/backgrounds/wyll_bushes.jpg",
+      "venAwaiting": "assets/backgrounds/ven_waiting.jpg",
+      "venPowersMasked": "assets/backgrounds/ven_powers_masked.jpg",
+      "venPowersUnmasked": "assets/backgrounds/ven_powers_unmasked.jpg",
+      "scratchJoins": "assets/backgrounds/scratch_comes.jpg",
+      "theWayback": "assets/backgrounds/back_to_camp.jpg",
+      "aroundTheFireTogether": "assets/backgrounds/around_the_fire.jpg",
+      "venFinallySleeps": "assets/backgrounds/ven_sleeps.jpg"
+    },
+    "portraits": {
+      "ven_masked": "assets/portraits/ven_masked.png",
+      "ven_masked_powers": "assets/portraits/ven_masked_powers.png",
+      "ven_unmasked": "assets/portraits/ven_unmasked.png",
+      "ven_unmasked_powers": "assets/portraits/ven_unmasked_powers.png",
+      "wyll": "assets/portraits/wyll.png",
+      "party": "assets/portraits/party.png",
+      "scratch": "assets/portraits/scratch.png",
+      "kholkan": "assets/portraits/kholkan.png",
+      "lusignelle": "assets/portraits/lusignelle.png"
+    }
+  },
+  "start": "start",
+  "nodes": {
+    "start": {
+      "scene": "X",
+      "type": "narration",
+      "choices": [
+        {
+          "text": "Commencer ?",
+          "next": "A0"
+        }
+      ],
+      "effects": [
+        {
+          "background": "intro",
+          "vignetteDarkFactor": 0.2
+        }
+      ]
+    },
+    "A0": {
+      "scene": "A",
+      "type": "narration",
+      "text": [
+        "Les dernières journées agitent votre sommeil. ",
+        "Le marché de Raphael, l'évasion de la conseillère, le couronnement du tyran...",
+        "La presse à scandale évitée de justesse, l'élimination de l'assassin de Bhaal, la découverte de l'ancien tome de Karsus..."
+      ],
+      "effects": [
+        {
+          "background": "default",
+          "soundtrack": "night_ambient",
+          "vignetteDarkFactor": 0.7
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "A0.1"
+    },
+    "A0.1": {
+      "scene": "A",
+      "type": "narration",
+      "text": [
+        "Les pensées de Lusignelle vagabondent entre le mage ayant commandité la chasse de Chantenuit, et l'explosif dévastateur que lui ont confié les gnomes de Maindefer.",
+        "Kholkan rêve de mécanique infernale, un garde d'acier avec le visage de Dammon répétant inlassablement \"Démantèlement, démantèlement !\". Iel se retourne périodiquement dans son sommeil pour supporter la chaleur qu'irradie la tieffeline endormie près de lui."
+      ],
+      "effects": [
+        {
+          "background": "campfire",
+          "vignetteDarkFactor": 0.7
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "A0.2"
+    },
+    "A0.2": {
+      "scene": "A",
+      "type": "narration",
+      "text": [
+        "Vous êtes tiré·es du sommeil par un bruit subtil, plus loin dans le camp.",
+        "Vous échangez un regard en vous redressant. Tout semble calme...",
+        "Puis un léger mouvement."
+      ],
+      "effects": [
+        {
+          "soundtrack": "lurking",
+          "background": "default"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "A1"
+    },
+    "A1": {
+      "scene": "A",
+      "type": "narration",
+      "text": [
+        "Vous distinguez Wyll, debout près de la couche vide de Ven. La pénombre cache ses traits, mais il semble agité.",
+        "Vous l'apercevez saisir sa rapière avant de disparaître dans les buissons qui bordent le camp."
+      ],
+      "effects": [
+        {
+          "background": "wyllIsUp",
+          "vignetteDarkFactor": 0.15
+        }
+      ],
+      "choices": [
+        {
+          "text": "Se dépêcher d'aller le rejoindre.",
+          "narrative": true,
+          "next": "A2_joinWyll",
+          "set": {
+            "partyIsRevealed": true
+          }
+        },
+        {
+          "text": "Le suivre discrètement.",
+          "narrative": true,
+          "next": "A3"
+        }
+      ]
+    },
+    "A2_joinWyll": {
+      "scene": "A",
+      "type": "narration",
+      "text": [
+        "Vous suivez Wyll aux sons des broussailles qu'il écarte. Vous l'apercevez plus loin devant vous, et le rattrapez sans peine.",
+        "La surprise sur son visage lorsqu'il vous aperçoit est vite remplacée par une expression préoccupée, et il lève un doigt devant ses lèvres à votre intention."
+      ],
+      "choices": [
+        {
+          "text": "Hocher la tête sans un mot",
+          "narrative": true,
+          "next": "A3"
+        },
+        {
+          "text": "Lui demander ce qu'il fabrique en chuchotant.",
+          "narrative": true,
+          "next": "A2_joinWyll_whatsup"
+        },
+        {
+          "text": "Lever les yeux dans la direction où pointe son doigt.",
+          "narrative": true,
+          "next": "A2_joinWyll_wtf"
+        }
+      ],
+      "effects": [
+        {
+          "background": "wyllEntersBushes",
+          "vignetteDarkFactor": 0.5
+        }
+      ]
+    },
+    "A2_joinWyll_whatsup": {
+      "scene": "A",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "text": [
+        "\"Je ne suis pas sûr. Vite, restez derrière moi.\""
+      ],
+      "callForContinue": true,
+      "effects": [
+        {
+          "portraitRight": "wyll"
+        }
+      ],
+      "autoNext": "A3"
+    },
+    "A2_joinWyll_wtf": {
+      "scene": "A",
+      "type": "dialogue",
+      "speaker": "Narrator",
+      "text": [
+        "Il baisse sa main en vous regardant d'un air interloqué, avant de vous inviter à le suivre."
+      ],
+      "autoNext": "A3"
+    },
+    "A3": {
+      "scene": "A",
+      "type": "narration",
+      "textVariants": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": [
+            "Vous progressez ensemble à la suite de Wyll pendant de longues minutes. L'herbe laisse lentement place à une terre rocailleuse. Les frondaisons s'écartent et les buissons se clairsèment.",
+            "Finalement, il semble ralentir le rythme et dégaine lentement son arme."
+          ]
+        },
+        {
+          "else": true,
+          "text": [
+            "Vous suivez Wyll aux sons des broussailles qu'il écarte. Vous l'apercevez plus loin devant vous, et gardez la distance nécessaire pour tout juste le distinguer.",
+            "Il parait suivre une direction approximative, comme cherchant quelque chose du regard. Son attention portée vers l'avant vous permet d'avancer sans vous faire remarquer.",
+            "Au bout de longues minutes, les frondaisons s'écartent et les buissons se clairsèment. Finalement, Wyll semble ralentir le rythme et dégaine lentement son arme."
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "background": "wyllEntersBushes",
+          "vignetteDarkFactor": 0.5
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "B0_exposition"
+    },
+    "B0_exposition": {
+      "scene": "B",
+      "type": "narration",
+      "textVariants": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": [
+            "Wyll émerge des buissons, arme en main. Vous débouchez derrière lui sur un promontoire surplombant l'estuaire. Sous le ciel nocturne, le panorama familier du Chiontar et de la travée du Dracosire qui l'enjambe se dévoile.",
+            "La silhouette de Ven se découpe contre le ciel nocturne, mais son dos est tourné au paysage.",
+            "Elle se tient immobile face à vous, comme si elle s'attendait à votre venue, son visage caché derrière l'inexpressif masque de tribun de la nuit - et son arc à la main."
+          ]
+        },
+        {
+          "else": true,
+          "text": [
+            "Wyll émerge des buissons, arme en main, sur un promontoire surplombant l'estuaire. Sous le ciel nocturne, le panorama familier du Chiontar et de la travée du Dracosire qui l'enjambe se dévoile.",
+            "La silhouette de Ven se découpe contre le ciel nocturne, mais son dos est tourné au paysage.",
+            "Elle se tient immobile face à Wyll, comme si elle s'attendait à sa venue, son visage caché derrière l'inexpressif masque de tribun de la nuit - et son arc à la main."
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "if": {
+            "partyIsRevealed": false
+          },
+          "text": "Rester cachées dans les buissons pour observer ce qui se passe",
+          "narrative": true,
+          "next": "B1_wyllOpens"
+        },
+        {
+          "if": {
+            "partyIsRevealed": false
+          },
+          "text": "Sortir à découvert",
+          "narrative": true,
+          "set": {
+            "partyIsRevealed": true
+          },
+          "next": "B0.2_venOpens"
+        }
+      ],
+      "effects": [
+        {
+          "background": "venAwaiting",
+          "vignetteDarkFactor": 0.7,
+          "soundtrack": "tensed_exchange"
+        }
+      ],
+      "autoNext": "B0.2_venOpens"
+    },
+    "B0.2_venOpens": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "text": "Ça fait beaucoup de compagnie pour... pas d'invitation.",
+      "choices": [
+        {
+          "text": "Laisser Wyll répondre",
+          "narrative": true,
+          "next": "B1_wyllOpens"
+        },
+        {
+          "text": "Tu n'en envoies pas souvent en ce moment. Une raison pour ce besoin de solitude ?",
+          "next": "B1.1_notAlone"
+        },
+        {
+          "text": "Eeeh oui ! Pourquoi, c'est un problème la compagnie ?",
+          "next": "B1.1_notAlone"
+        }
+      ],
+      "effects": [
+        {
+          "background": "venAwaiting",
+          "portraitRight": "ven_masked"
+        }
+      ]
+    },
+    "B1_wyllOpens": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "text": "J'aurais préféré que tu prennes les devants. Mais tu choisis de curieuses circonstances pour aller t'isoler.",
+      "autoNext": "B1.1_notAlone",
+      "effects": [
+        {
+          "portraitLeft": "wyll"
+        }
+      ]
+    },
+    "B1.1_notAlone": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "text": "Ça n'existe pas, d'être seul. Plus depuis qu'on s'est écrasés sur cette plage.",
+      "choices": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Notre lien mental a changé dernièrement, comme si ta télépathie n'était plus de la même nature.",
+          "next": "B2_whatDanger"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Tu crois que c'est le moment d'avoir des comportements suspects ?",
+          "next": "B2_whatDanger"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Ne rien dire",
+          "narrative": true,
+          "next": "B2_dangerAround"
+        }
+      ],
+      "autoNext": "B2_dangerAround",
+      "effects": [
+        {
+          "portraitRight": "ven_masked"
+        }
+      ]
+    },
+    "B2_dangerAround": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "text": "Mais le danger est différent maintenant, plus grand que jamais... Il y a trop de choses en jeu pour prendre des risques inutiles",
+      "effects": [
+        {
+          "portraitLeft": "wyll"
+        }
+      ],
+      "autoNext": "B2_whatDanger"
+    },
+    "B2_whatDanger": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "textVariants": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": [
+            "Peut-être bien que oui... Est-ce que c'est pour moi que vous vous inquiétez ?",
+            "...ou bien de moi ?"
+          ]
+        },
+        {
+          "else": true,
+          "text": [
+            "Peut-être bien que oui... Est-ce que c'est pour moi que tu t'inquiètes ?",
+            " ...ou bien de moi ?"
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Ne joue pas à ça. On a tous raison d'être inquiets.",
+          "next": "B3_wyllFirstArguments"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "On sait que tu as consommé des larves d'illithids. Qu'est-ce qui t'as prise ?",
+          "next": "B3_wyllFirstArguments"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Laisser parler Wyll",
+          "narrative": true,
+          "next": "B3_wyllFirstArguments"
+        }
+      ],
+      "effects": [
+        {
+          "portraitRight": "ven_masked"
+        }
+      ],
+      "autoNext": "B3_wyllFirstArguments"
+    },
+    "B3_wyllFirstArguments": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "text": [
+        "Une chose est sûre : tu n'es pas la même depuis qu'on a atteint la ville. Dès qu'on est arrivé à Aigreterre, tu t'es isolée, tu caches ton visage...",
+        "...Est-ce que c'est toi ? L'imposteur dont parlait Gortash ? Il se passe plus une nuit sans que tu t'éclipses !"
+      ],
+      "effects": [
+        {
+          "portraitLeft": "wyll"
+        }
+      ],
+      "autoNext": "B3_venNoReply"
+    },
+    "B3_venNoReply": {
+      "scene": "B",
+      "type": "narration",
+      "text": [
+        "...Pas de réponse. ",
+        "Le faciès de métal figé sous le clair de lune ne laissee rien transparaître. L'attitude de Ven est indéchiffrable, mais tendue - comme un arc. "
+      ],
+      "choices": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Quand on y pense, c'est vrai que tu étais introuvable lorsqu'on a affronté les sans-visage pour la première fois, en arrivant au cirque...",
+          "next": "B4_wyllInsists"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Ça devient de plus en plus difficile de te trouver une bonne raison de ne pas t'expliquer.",
+          "next": "B4_wyllInsists"
+        },
+        {
+          "if": {
+            "partyIsRevealed": false
+          },
+          "text": "Sortir à découvert",
+          "narrative": true,
+          "set": {
+            "partyIsRevealed": true
+          },
+          "next": "B3join"
+        },
+        {
+          "if": {
+            "partyIsRevealed": false
+          },
+          "text": "Rester cachées",
+          "narrative": true,
+          "next": "B4_wyllInsists"
+        }
+      ],
+      "effects": [
+        {
+          "portraitRight": "ven_masked"
+        }
+      ]
+    },
+    "B3join": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "predialogue": {
+        "text": [
+          "La tension est palpable lorsque vous avancez sur le promontoire.",
+          "Ven porte aussitôt une main à son carquois, avant de vous reconnaître et de se relâcher - légèrement. Voyant sa réaction, Wyll recule de quelques pas et vous jette un regard anxieux."
+        ]
+      },
+      "text": "Je vois que tu as amené des renforts...",
+      "effects": [
+        {
+          "portraitRight": "ven_masked",
+          "portraitLeft": "party"
+        }
+      ],
+      "autoNext": "B3join.1"
+    },
+    "B3join.1": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "predialogue": {
+        "text": "Wyll secoue la tête d'un air amer."
+      },
+      "text": "Je ne savais pas que j'étais suivi. Mais cette discussion les concerne aussi.",
+      "choices": [
+        {
+          "text": "Quand on y pense, c'est vrai que tu étais introuvable lorsqu'on a affronté les sans-visage pour la première fois, en arrivant au cirque...",
+          "next": "B4_wyllInsists"
+        },
+        {
+          "text": "Ça devient de plus en plus difficile de te trouver une bonne raison de ne pas t'expliquer.",
+          "next": "B4_wyllInsists"
+        },
+        {
+          "text": "Ne vous dérangez pas, continuez comme si on n'était pas là.",
+          "next": "B4_wyllInsists"
+        }
+      ],
+      "effects": [
+        {
+          "portraitLeft": "wyll"
+        }
+      ]
+    },
+    "B4_wyllInsists": {
+      "scene": "B",
+      "predialogue": {
+        "text": "La main de Wyll se crispe sur son épée. L'inquiétude et le doute sont audibles dans sa voix."
+      },
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "textVariants": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": [
+            "Jaheira m'a dit que tu avais l'air de connaître un des changeformes quand vous avez retrouvé les ménéstrels, puis que tu t'es esquivée. Il n'y a pas qu'à la bataille du cirque que tu n'étais pas là !"
+          ]
+        },
+        {
+          "else": true,
+          "text": [
+            "Jaheira m'a dit que tu avais l'air de connaître un des changeformes quand vous avez retrouvé les ménéstrels. ",
+            "Et au cirque, lors du premier combat contre les sans-visages ? Tu n'étais pas là !"
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "portraitLeft": "wyll"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "B5_armorCracks"
+    },
+    "B5_armorCracks": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "predialogue": {
+        "text": "Même dans la pénombre, même dans son armure, Ven semble frémir. Votre esprit tressaille au contact de l'agitation du sien."
+      },
+      "text": [
+        "Je n'étais pas là ? MOI ? J'ai toujours été là, même quand vous ne le saviez pas ! À patrouiller, à surveiller, à désamorcer...",
+        "Sans moi, il y a longtemps que vous auriez été tués - par une explosion, une ourse-hibou, ou dans votre sommeil par un vampire !"
+      ],
+      "effects": [
+        {
+          "portraitRight": "ven_masked"
+        }
+      ],
+      "autoNext": "B5.1"
+    },
+    "B5.1": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "predialogue": {
+        "text": "L'halfeline prend plusieurs grandes respirations, et poursuit avec une émotion palpable."
+      },
+      "text": [
+        "Un Éfrit m'a envoyée dans la péninsule de Chult, une jungle que je ne souhaite à personne. En un clin d'oeil, trois mois se sont écoulés. Quand j'ai réapparu, la fête n'avait pas marqué une seule seconde de pause. Et vous n'étiez pas là. Vous. ",
+        "La première personne à m'adresser la parole était une saloperie de bonnet rouge, qui s'est plaint auprès de moi ! Il est venu me dire - à moi ! - que... la puanteur de la Guenaude lui manquait."
+      ],
+      "choices": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "...Oh",
+          "next": "B5.2_confession"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Et ensuite ?",
+          "next": "B5.2_confession"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Ça ne répond pas du tout à nos questions, Ven.",
+          "next": "B5.2_confession"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "[ILLITHID] Tenter de sentir des pensées dissimulées.",
+          "narrative": true,
+          "set": {
+            "pryedOnVen": true
+          },
+          "next": "B5.3_pryOnVen"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Ne rien dire",
+          "narrative": true,
+          "next": "B5.2_confession"
+        }
+      ],
+      "effects": [
+        {
+          "portraitRight": "ven_masked"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "B5.2_confession"
+    },
+    "B5.3_pryOnVen": {
+      "scene": "B",
+      "type": "narration",
+      "text": [
+        "Les pensées de Ven sont habitées par un visage. Quelqu'un qu'elle a rencontré dans la jungle, victime lui aussi du génie.",
+        "Il ne lui a jamais dit combien de temps il a erré seul avant de la trouver.",
+        "Ven est convaincue qu'elle ne serait jamais revenue sans lui.",
+        "Il lui rappelait son fils."
+      ],
+      "effects": [
+        {
+          "portraitLeft": "ven_masked",
+          "background": "default"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "B5.2_confession"
+    },
+    "B5.2_confession": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "predialogue": {
+        "text": [
+          "Son intonation faiblit quand elle reprend, plus lentement."
+        ]
+      },
+      "text": [
+        "J'ai cru que j'étais folle. Je me suis enfuie vers dans le moulin, plus loin, où se trouvait le cadavre d'un flagelleur mental nouveau-né.",
+        "Je voulais sortir de ma tête, je ne pouvais plus y être. Alors je me suis ouvert à la larve astrale offerte par l'Empereur. Plutôt, j'ai arrêté d'y résister.",
+        "C'était libérateur, c'était la solution, j'en ai eu la confirmation intime. Dans le même élan, j'ai mangé plusieurs des parasites que l'on conservait.",
+        "Mais les migraines n'ont pas disparu. Elles sont devenues... agréables."
+      ],
+      "choices": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Ne rien dire",
+          "narrative": true,
+          "next": "B5.3_softWyll"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Rien de tout ça n'est vraiment rassurant, tu t'en rends compte ?",
+          "next": "B5.4_unmasking",
+          "set": {
+            "unmasked": true
+          }
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Et alors ? Tu as plein de nouveau pouvoirs ? Il te faut au moins 3 cerveaux frais par jours ?",
+          "next": "B5.4_unmasking",
+          "set": {
+            "unmasked": true
+          }
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Pousser Ven dans le vide. Il est trop tard pour elle.",
+          "narrative": true,
+          "next": "B6_pushedVen"
+        }
+      ],
+      "effects": [
+        {
+          "portraitRight": "ven_masked"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "B5.4_softWyll"
+    },
+    "B5.3_softWyll": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "predialogue": {
+        "text": "Wyll reprend tout doucement, sentant une faille ouverte au prix d'une blessure."
+      },
+      "text": "... Et toi ? Qu'est-ce que tu es devenue ...?",
+      "lateSet": {
+        "unmasked": true
+      },
+      "effects": [
+        {
+          "portraitLeft": "wyll"
+        }
+      ],
+      "autoNext": "B5.4_unmasking"
+    },
+    "B5.4_softWyll": {
+      "scene": "B",
+      "type": "narration",
+      "text": "Vous entendez quelques mots murmurés. Trop bas pour pouvoir les comprendre depuis votre cachette, ou pour deviner de qui ils viennent.",
+      "lateSet": {
+        "unmasked": true
+      },
+      "autoNext": "B5.4_unmasking"
+    },
+    "B5.4_unmasking": {
+      "scene": "B",
+      "type": "narration",
+      "textVariants": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": [
+            "Sans un mot, Ven retire alors son masque. En-dessous, pas de déguisement magique. Dans la faible lueur nocturne, vous voyez sa figure comme pour la première fois.",
+            "Des veinules noirâtres courent de son visage vers son cou, son teint basané est légèrement cireux, et ses yeux sont devenus deux puits d'encre noire.",
+            "Pourtant, en omettant les symptômes évident de la cérémorphose, son visage semble plus marqué. De la fatigue, des cheveux sales et emmêlés, et des cicatrices que vous n'aviez jamais vues - pourtant vieilles de plusieurs semaines.",
+            "Elle lève alors les bras et un chuintement d'énergie psychique se fait entendre, tandis qu'une aura sombre l'enveloppe et la soulève du sol."
+          ]
+        },
+        {
+          "else": true,
+          "text": [
+            "Ven fait un pas vers Wyll. Elle retire son masque, révélant un visage parcouru de veinules noirâtres, marqué des sympômes de la cérémorphoses. Ses yeux sont devenus des puits d'encre noire.",
+            "Elle lève les bras et un chuintement d'énergie psychique se fait entendre, tandis qu'une aura sombre l'enveloppe et la soulève du sol."
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "if": {
+            "partyIsRevealed": false
+          },
+          "text": "Rester cachées.",
+          "narrative": true,
+          "next": "B5.5_powers"
+        },
+        {
+          "if": {
+            "partyIsRevealed": false
+          },
+          "text": "Venir en renfort à Wyll",
+          "narrative": true,
+          "next": "B5join"
+        }
+      ],
+      "lateSet": {
+        "unmasked": true
+      },
+      "effects": [
+        {
+          "if": {
+            "unmasked": true
+          },
+          "background": "venPowersUnmasked"
+        },
+        {
+          "if": {
+            "unmasked": false
+          },
+          "background": "venPowersMasked"
+        },
+        {
+          "soundEffect": "ven_flies"
+        }
+      ],
+      "autoNext": "B5.5_powers"
+    },
+    "B5join": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "predialogue": {
+        "text": [
+          "La tension est palpable lorsque vous avancez sur le promontoire, prêt·es à en découdre.",
+          "En pleine lévitation, Ven lève une main dans votre direction et un crépitement agite l'air. L'espace d'un instant, vous sentez une déflagration mentale naître dans son regard...",
+          "...puis s'éteindre aussitôt, alors qu'elle semble vous reconnaître.",
+          "Voyant sa réaction, Wyll recule de quelques pas et vous fait signe de vous arrêter avec un regard anxieux."
+        ]
+      },
+      "text": [
+        "On dirait que tu n'es pas venu seul, finalement."
+      ],
+      "callForContinue": true,
+      "autoNext": "B5join.1",
+      "effects": [
+        {
+          "portraitLeft": "party",
+          "portraitRight": "ven_unmasked_powers",
+          "soundEffect": "ven_holds_blast"
+        }
+      ]
+    },
+    "B5join.1": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "predialogue": {
+        "text": "Wyll secoue la tête d'un air amer."
+      },
+      "text": [
+        "Je n'étais pas au courant... Mais cette conversation les concerne autant que moi."
+      ],
+      "choices": [
+        {
+          "text": "[CLERC] Par Kelemvor, qu'est-ce que tu es devenue ?",
+          "next": "B5.5_powers"
+        },
+        {
+          "text": "[DOMAINE DE LA TEMPÊTE] Toi aussi tu peux voler, maintenant ?",
+          "next": "B5.5_powers"
+        },
+        {
+          "text": "Elle se transforme en flagelleur ! Tenez-vous prêts !",
+          "next": "B5.5_powers"
+        },
+        {
+          "text": "Rester silencieux - mais sur vos gardes.",
+          "narrative": true,
+          "next": "B5.5_powers"
+        }
+      ],
+      "effects": [
+        {
+          "portraitLeft": "wyll"
+        }
+      ],
+      "autoNext": "B5.5_powers"
+    },
+    "B6_pushedVen": {
+      "scene": "B",
+      "type": "narration",
+      "text": [
+        "Une brusque poussée et Ven bascule en arrière, comme si elle se laissait faire. L'espace d'un instant, son regard fixé sur vous semble porter une forme d'acceptation.",
+        "Alors que l'archère disparait hors de vue, la réflexion vous vient que s'il s'agissait d'une métamorphe, son instinct de conservation laissait à désirer... puis vous entendez l'exclamation de Wyll, qui s'est précipité en avant."
+      ],
+      "callForContinue": true,
+      "autoNext": "B6.1_pushedVen"
+    },
+    "B6.1_pushedVen": {
+      "scene": "B",
+      "type": "narration",
+      "text": "... mais avant qu'il finisse de réagir, la silhouette de Ven s'élève dans les airs devant vous dans un chuintement d'énergie psychique. Une aura sombre l'enveloppe et la dépose là où elle se trouvait plus tôt.",
+      "effects": [
+        {
+          "soundEffect": "ven_flies",
+          "background": "venPowersMasked"
+        }
+      ],
+      "autoNext": "B5.5_powers"
+    },
+    "B5.5_powers": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "predialogue": {
+        "if": {
+          "partyIsRevealed": true
+        },
+        "text": "Ven marque un temps, comme pour digérer votre réaction."
+      },
+      "text": [
+        "Mes pensées sont plus rapides, comme si je les connaissais à l'avance. Je crois que mon esprit pourrait soumettre celui des autres - l'abîmer, même.",
+        "Mon corps n'est plus seulement celui d'une halfeline. Je peux voler, forcer des lignes ennemies...Je peux vivre à travers les flèches que je tire..."
+      ],
+      "effects": [
+        {
+          "if": {
+            "unmasked": true
+          },
+          "portraitRight": "ven_unmasked_powers"
+        },
+        {
+          "if": {
+            "unmasked": false
+          },
+          "portraitRight": "ven_masked_powers"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "B5.6_powers"
+    },
+    "B5.6_powers": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "text": [
+        "Mais je ne me reconnais plus... et dans ma tête, c'est un chaos sans nom. Peut-être que je suis une changeforme, après tout...",
+        "Je suis une bonne chasseuse, peut-être même meilleure depuis, mais je ne sais plus quoi pister, ni qui tenir en joue.",
+        "J'ai tué des gardes hier, près de la prison. Ils étaient aux ordres de Gortash, mais je ne sais pas s'ils étaient coupables.",
+        "...Je crois que je me suis perdue."
+      ],
+      "choices": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "[ENSORCELEUSE] Le pouvoir en soi n'est jamais une mauvaise chose. C'est son usage qui mérite réflexion.",
+          "next": "B6.1_shadowfell"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Justement, à ce sujet, est-ce qu'on est bien sûr que tes nouveaux pouvoirs seront dirigés vers des gens qui le méritent ?",
+          "next": "B6.1_shadowfell"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Laisser répondre Wyll",
+          "narrative": true,
+          "next": "B6_monsters"
+        }
+      ],
+      "effects": [
+        {
+          "if": {
+            "unmasked": true
+          },
+          "portraitRight": "ven_unmasked_powers"
+        },
+        {
+          "if": {
+            "unmasked": false
+          },
+          "portraitRight": "ven_masked_powers"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "B6_monsters"
+    },
+    "B6_monsters": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "text": "Les monstres sont durs à reconnaître, dernièrement... C'est le moment de ne pas devenir ce que tu chasses.",
+      "effects": [
+        {
+          "portraitLeft": "wyll"
+        }
+      ],
+      "autoNext": "B6.1_shadowfell"
+    },
+    "B6.1_shadowfell": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "text": [
+        "Je ne pense à rien d'autre...",
+        "Je n'arrive pas à dormir, c'est pour ça que je viens ici. Je ne me sens plus en sécurité dans ma tête depuis Hautelune, et c'est pire quand je m'endors.",
+        "Je crois que je dois me surveiller..."
+      ],
+      "effects": [
+        {
+          "if": {
+            "unmasked": true
+          },
+          "portraitRight": "ven_unmasked_powers"
+        },
+        {
+          "if": {
+            "unmasked": false
+          },
+          "portraitRight": "ven_masked_powers"
+        }
+      ],
+      "autoNext": "B6.2_whatHappensToFriends"
+    },
+    "B6.2_whatHappensToFriends": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "predialogue": {
+        "if": {
+          "unmasked": true,
+          "partyIsRevealed": true
+        },
+        "text": "Ven glisse un petit regard perçant à Lusignelle."
+      },
+      "text": "...Après tout, j'ai vu dans la Gisombre ce qui attend les amies qui peinent à savoir qui elles sont.",
+      "choices": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Non, tu as vu ce qui attend celle qui garde trop longtemps pour elle trop de souffrance.",
+          "next": "B6.4_ceremorphosis"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Le passé est le passé, essayons seulement de ne pas reproduire les mêmes erreurs.",
+          "next": "B6.4_ceremorphosis"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "[LUSIGNELLE] C'était. Un. Accident.",
+          "next": "B6.4_ceremorphosis"
+        },
+        {
+          "if": {
+            "partyIsRevealed": false
+          },
+          "text": "Rester cachées.",
+          "narrative": true,
+          "next": "B6.3_wasntThere"
+        },
+        {
+          "if": {
+            "partyIsRevealed": false
+          },
+          "text": "Sortir à découvert",
+          "narrative": true,
+          "next": "B6join"
+        },
+        {
+          "if": {
+            "partyIsRevealed": false
+          },
+          "text": "[LUSIGNELLE] C'ÉTAIT ! UN ! ACCIDENT !",
+          "next": "B6join"
+        }
+      ],
+      "effects": [
+        {
+          "if": {
+            "unmasked": true
+          },
+          "portraitRight": "ven_unmasked_powers"
+        },
+        {
+          "if": {
+            "unmasked": false
+          },
+          "portraitRight": "ven_masked_powers"
+        }
+      ]
+    },
+    "B6join": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "predialogue": {
+        "text": [
+          "La tension ambiante connait un drôle de flottement lorsque vous avancez sur le promontoire.",
+          "Wyll parait surpris, mais Ven vous regarde approcher avec un air d'acceptation."
+        ]
+      },
+      "text": [
+        "À point nommé...",
+        "Tu n'es pas venu seul, finalement."
+      ],
+      "choices": [
+        {
+          "text": "Tu fais peur à voir... tu peux éteindre cette aura monstrueuse, s'il-te-plaît ?",
+          "next": "B6.4_ceremorphosis"
+        },
+        {
+          "text": "Il ne nous a pas invité·es, on se faisait juste du souci.",
+          "next": "B6.4_ceremorphosis"
+        },
+        {
+          "text": "C'était ça, ton secret ? Qu'est-ce qui se passe ici ?",
+          "next": "B6.4_ceremorphosis"
+        }
+      ],
+      "effects": [
+        {
+          "portraitRight": "ven_unmasked_powers"
+        }
+      ]
+    },
+    "B6.3_wasntThere": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "predialogue": {
+        "text": "Wyll baisse les yeux. La perte d'Ombrecoeur avait abîmé tout le monde."
+      },
+      "text": "Je n'étais pas là, et je ne sais pas ce qu'il s'est passé après les épreuves de Shar. Mais je suis là, maintenant. Et j'ai l'impression que la situation est très différente... Non ?",
+      "effects": [
+        {
+          "portraitLeft": "wyll"
+        }
+      ],
+      "autoNext": "B6.4_ceremorphosis"
+    },
+    "B6.4_ceremorphosis": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "predialogue": {
+        "text": "Les filaments de magie obscures s'estompent, et Ven atterrit doucement sur le sol."
+      },
+      "text": [
+        "Je ne sais pas ce qui m'attend.",
+        "Je crois que je suis toujours en contrôle de moi. Mais je me sens différente, ma conscience est moins stable, plus... flexible.",
+        "J'ai peur qu'elle soit déjà en train de disparaître."
+      ],
+      "choices": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "[SANS-REPOS] Par nature, les illithids sont dépourvus d'âme au sens où on l'entend. Et je tiens d'une source infaillible que tu disposes toujours de la tienne.",
+          "next": "B6.6_amI"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "On connaît au moins deux illithids qui sont des individus à part entière et ne sont soumis à aucune colonie. A priori, la cérémorphose ne semble pas être la fin de tout.",
+          "next": "B6.6_amI"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Si jamais ça peut aider, j'ai très récemment eu la preuve personnelle que les illithids peuvent avoir des sentiments et même une personnalité.",
+          "next": "B6.6_amI"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "L'empereur a fini par réussir à nous transformer : pile au moment où l'on approche à la fois du cerveau méga-suprême dopé à la magie divine et du messie multimillénaire des plus grands chasseurs de céphalopodes à travers le cosmos. Ça sent la bouse.",
+          "next": "B6.6_amI"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Laisser répondre Wyll",
+          "narrative": true,
+          "next": "B6.5_stillMyself"
+        }
+      ],
+      "effects": [
+        {
+          "if": {
+            "unmasked": true
+          },
+          "portraitRight": "ven_unmasked"
+        },
+        {
+          "if": {
+            "unmasked": false
+          },
+          "portraitRight": "ven_masked"
+        }
+      ],
+      "autoNext": "B6.5_stillMyself"
+    },
+    "B6.5_stillMyself": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "text": [
+        "Quand j'ai passé un pacte avec une diablesse, j'avais peur d'y perdre mon âme. J'ai mis du temps avant d'en mesurer le coût, et je viens seulement d'en payer le prix.",
+        "Mais je n'ai jamais cessé d'être moi."
+      ],
+      "effects": [
+        {
+          "portraitLeft": "wyll"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "B6.6_amI"
+    },
+    "B6.6_amI": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "predialogue": {
+        "text": "Ven lève une main à son visage, reprenant avec une fêlure dans sa voix."
+      },
+      "text": [
+        "Raphael, les métamorphes de Bhaal, les manigances de Gortash, de Lorroakan...",
+        "Les replis dimensionnels de génies cruels... Et mon esprit que je ne reconnais pas..."
+      ],
+      "effects": [
+        {
+          "if": {
+            "unmasked": true
+          },
+          "portraitRight": "ven_unmasked"
+        },
+        {
+          "if": {
+            "unmasked": false
+          },
+          "portraitRight": "ven_masked"
+        }
+      ],
+      "autoNext": "B6.7_amI"
+    },
+    "B6.7_amI": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "predialogue": {
+        "text": "L'arc tombe à terre, et l'halfeline lâche un léger gémisement."
+      },
+      "text": "Est-ce que je suis toujours moi ...? Ou bien seulement ce qui a survécu ?",
+      "choices": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "[SANS-REPOS] Ces questions font la valeur d'une simple vie de mortel. Il y a des réponses que même les dieux ignorent.",
+          "next": "B7_wyllShares"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "[CLÉRESSE DE THALOS] Le changement est toujours un procédé brutal. Il faut accepter qu'une part de nous soit détruite pour que naisse la suivante.",
+          "next": "B7_wyllShares"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "On ne choisit pas ce qui nous arrive, seulement ce qu'on en fait. C'est vers demain qu'il faut se tourner.",
+          "next": "B7_wyllShares"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Ne rien dire.",
+          "narrative": true,
+          "next": "B6.8_choseToStay"
+        }
+      ],
+      "effects": [
+        {
+          "if": {
+            "unmasked": true
+          },
+          "portraitRight": "ven_unmasked"
+        },
+        {
+          "if": {
+            "unmasked": false
+          },
+          "portraitRight": "ven_masked"
+        }
+      ],
+      "autoNext": "B6.8_choseToStay"
+    },
+    "B6.8_choseToStay": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "text": [
+        "Tout ça à la fois, j'en suis certain. Mais si tu te sens changer... J'ai besoin que tu choisisses de rester.",
+        "Tu l'as bien dit, sans toi on se ferait tuer dans les deux jours."
+      ],
+      "effects": [
+        {
+          "portraitLeft": "wyll"
+        }
+      ],
+      "autoNext": "B7_wyllShares"
+    },
+    "B7_wyllShares": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "predialogue": {
+        "text": "Wyll rengaine son épée et pousse un long soupir."
+      },
+      "textVariants": [
+        {
+          "if": {
+            "wyllIsFree": true
+          },
+          "text": [
+            "J'ai choisi de condamner mon père, pour me libérer de l'emprise de Mizora.",
+            "Et maintenant, j'ai l'impression que la culpabilité me lie bien plus que n'importe quel contrat infernal.",
+            "Mais nous sommes toujours là. Il faut que ça soit une victoire, même si ça n'y ressemble pas."
+          ]
+        },
+        {
+          "else": true,
+          "text": [
+            "Pour sauver mon père, j'ai livré mon âme à Mizora. À Zariel. Je suis très mal placé pour donner des leçons de vie, mais je sais une chose.",
+            "Malgré nos décisions et leurs conséquences, nous avons toujours la liberté de l'instant présent.",
+            "Il y a toujours de nouvelles décisions à prendre."
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "portraitLeft": "wyll"
+        }
+      ],
+      "autoNext": "B8_thanks"
+    },
+    "B8_thanks": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "predialogue": {
+        "text": "Ven est muette. Son regard s'égare vers le ciel."
+      },
+      "text": [
+        "Tant que notre histoire s'écrit, nous ne sommes tous que des travaux en cours. Les doutes et les regrets doivent être acueillis.",
+        "Merci d'avoir partagé les tiens."
+      ],
+      "choices": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Nous avons tous nos secrets. La confiance que demande celui des autres est retournée lorsqu'il est livrée. Merci.",
+          "next": "B9_together"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Il y a d'autres choses que tu voudrais nous dire...Ven ?",
+          "next": "B8.1_anythingElse"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Bon, maintenant que c'est réglé, plus de cachotteries. On se serre les coudes.",
+          "next": "B9_together"
+        }
+      ],
+      "effects": [
+        {
+          "portraitLeft": "wyll"
+        }
+      ],
+      "autoNext": "B9_together"
+    },
+    "B8.1_anythingElse": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "predialogue": {
+        "if": {
+          "pryedOnVen": true,
+          "unmasked": true
+        },
+        "text": "Un petit sourire se dessine sur les lèvres de Ven."
+      },
+      "textVariants": [
+        {
+          "if": {
+            "pryedOnVen": true
+          },
+          "text": [
+            "Vous n'essayez plus de lire dans mon esprit, maintenant ...?",
+            "Lorsqu'on s'est battu contre les sans-visages, sous la Hache Dansante de Danthelon, j'ai reconnu l'un des métamorphes. Il avait pris l'apparence de ma tante. Chelvin...",
+            "...et je savais qu'elle était déjà morte. J'ai abattu son enveloppe mort-vivante lorsque l'on défendait Halsin durant son rituel, près de l'auberge de la dernière lueur."
+          ]
+        },
+        {
+          "else": true,
+          "text": [
+            "...",
+            "Lorsqu'on s'est battu contre les sans-visages, sous la Hache Dansante de Danthelon, j'ai reconnu l'un des métamorphes. Il avait pris l'apparence de ma tante. Chelvin...",
+            "...et je savais qu'elle était déjà morte. J'ai abattu son enveloppe mort-vivante lorsque l'on défendait Halsin durant son rituel, près de l'auberge de la dernière lueur."
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "text": "... Je suis désolé.",
+          "next": "B9_together"
+        },
+        {
+          "text": "Ne rien dire",
+          "narrative": true,
+          "next": "B9_together"
+        }
+      ],
+      "effects": [
+        {
+          "if": {
+            "unmasked": true
+          },
+          "portraitRight": "ven_unmasked"
+        },
+        {
+          "if": {
+            "unmasked": false
+          },
+          "portraitRight": "ven_masked"
+        }
+      ]
+    },
+    "B9_together": {
+      "scene": "B",
+      "type": "narration",
+      "textVariants": [
+        {
+          "if": {
+            "unmasked": false
+          },
+          "text": [
+            "Ven retire lentement son masque. Pour la première fois depuis longtemps, vous voyez son visage. Parcouru de veinules sombres, marqué les cicatrices et les mèches sales de longs mois d'errance dans une jungle lointaine...",
+            "...fatigué par le chagrin.",
+            "Elle vous adresse un regard calme."
+          ]
+        },
+        {
+          "else": true,
+          "text": [
+            "La lune accroche une larme sur le visage fatigué de Ven. Une perle sortie des ténèbres de ses yeux.",
+            "Elle vous adresse un regard calme."
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "portraitRight": "ven_unmasked"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "B9.1_together"
+    },
+    "B9.1_together": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "text": "Ensemble, alors ...? Jusqu'à la fin ?",
+      "choices": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Jusqu'à la fin.",
+          "next": "C0_exposition"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "[PETITES PERSONNES] De toute façon, si tu n'es à la hauteur, on n'est pas de taille non plus.",
+          "next": "C0_exposition"
+        },
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": "Les cartes sont tellement mauvaises qu'on risque pas de s'en tirer. Autant le faire à plusieurs !",
+          "next": "C0_exposition"
+        }
+      ],
+      "effects": [
+        {
+          "portraitRight": "ven_unmasked"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "B9.2_together"
+    },
+    "B9.2_together": {
+      "scene": "B",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "text": "Oui... Jusqu'à la fin.",
+      "effects": [
+        {
+          "portraitLeft": "wyll"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "C0_exposition"
+    },
+    "C0_exposition": {
+      "scene": "C",
+      "type": "narration",
+      "textVariants": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": [
+            "Soudain, un bruit dans les fourrés attire votre attention. Un grattement approche rapidement.",
+            "Vous apercevez une tache blanche sortir des buissons."
+          ]
+        },
+        {
+          "else": true,
+          "text": [
+            "Soudain, vous entendez un bruit dans les fourrés derrière vous. Vous faite volte-face.",
+            "Quelque chose semble vous avoir repérées, et s'approche rapidement."
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "portraitLeft": "party",
+          "soundtrack": "resolution"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "C1_scratchArrived"
+    },
+    "C1_scratchArrived": {
+      "scene": "C",
+      "type": "narration",
+      "textVariants": [
+        {
+          "if": {
+            "partyIsRevealed": true
+          },
+          "text": [
+            "Gratouille sort de la pénombre à petite foulées. Il a dû suivre votre trace depuis le camp.",
+            "Intrigué par l'échange, il s'approche et vous regarde d'un air impatient."
+          ]
+        },
+        {
+          "else": true,
+          "text": [
+            "Gratouille sort de la pénombre à petite foulées. Il a dû suivre votre trace depuis le camp.",
+            "Intrigué par l'échange, il s'approche en poussant un petit aboiement."
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "portraitLeft": "party",
+          "portraitRight": "scratch",
+          "background": "scratchJoins",
+          "soundEffect": "scratch_bark"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "C1.1_reunited"
+    },
+    "C1.1_reunited": {
+      "scene": "C",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "predialogue": {
+        "if": {
+          "partyIsRevealed": false
+        },
+        "text": [
+          "Ven et Wyll se retournent vers vous aussitôt, alerté par le bruit.",
+          "Wyll vous jette un regard entendu. La conversation est terminée, l'heure est à l'apaisement."
+        ]
+      },
+      "text": "Ha ha, on dirait que quelqu'un est venu nous ramener tous au campement !",
+      "effects": [
+        {
+          "portraitLeft": "wyll",
+          "portraitRight": "scratch"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Caresser Gratouille",
+          "narrative": true,
+          "next": "C2_vensCallsTheNight"
+        },
+        {
+          "text": "C'est vrai, nous avons tous besoin d'un peu de repos.",
+          "next": "C2_vensCallsTheNight"
+        },
+        {
+          "if": {
+            "partyIsRevealed": false
+          },
+          "text": "...Désolé de vous avoir épiés. On voulait simplement s'assurer que tout aille bien.",
+          "next": "C2_vensCallsTheNight"
+        }
+      ]
+    },
+    "C2_vensCallsTheNight": {
+      "scene": "C",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "predialogue": {
+        "text": "L'archère s'accroupit près de Gratouille, qui lui flaire le visage avec curiosité."
+      },
+      "textVariants": [
+        {
+          "if": {
+            "partyIsRevealed": false
+          },
+          "text": [
+            "Je vois que vous étiez nombreux à vous inquiéter.",
+            "J'espère que vous avez entendu ce que vous vouliez depuis votre cachette.",
+            "...Allez. Il est temps de rentrer."
+          ]
+        },
+        {
+          "else": true,
+          "text": [
+            "C'est toujours lui qui a raison, pas vrai ? Personne n'oserait rester debout quand il vient nous rechercher pour dormir.",
+            "C'était vraiment une longue nuit. C'est bien que vous soyez tous venus. "
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "portraitLeft": "ven_unmasked",
+          "portraitRight": "scratch"
+        }
+      ],
+      "lateSet": {
+        "partyIsRevealed": true
+      },
+      "callForContinue": true,
+      "autoNext": "C3_backToCamp"
+    },
+    "C3_backToCamp": {
+      "scene": "C",
+      "type": "narration",
+      "text": [
+        "Vous prenez le chemin du retour dans une curieuse atmosphère. Peu de réponses ont été trouvées, pour beaucoup de questions.",
+        "Pourtant, vous sentez que la tension des derniers jours est retombée chez Ven, comme un écho prometteur du début de vos aventures...",
+        "Et, peut-être, d'une confiance renouvelée ?"
+      ],
+      "effects": [
+        {
+          "background": "theWayback"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "C4_aroundTheFire"
+    },
+    "C4_aroundTheFire": {
+      "scene": "C",
+      "type": "narration",
+      "text": [
+        "Vous retrouvez les environs familiers du campement après quelques instants de marche silencieuse.",
+        "Sa mission remplie, votre compagnon canin s'en va aussitôt s'allonger sur un coin de paille.",
+        "Vous sentez la fatigue vous appeler à dormir, mais Wyll ravive encore les braises du feu. Puis il attrape une lettre dans ses affaires et la jette dans les flammes."
+      ],
+      "choices": [
+        {
+          "text": "...C'était quoi, ça ?",
+          "next": "C4.2_aLetter"
+        },
+        {
+          "text": "Se rapprocher du feu pour laisser Ven s'asseoir à côté de Wyll",
+          "narrative": true,
+          "next": "C4.1_whatsThat"
+        }
+      ],
+      "effects": [
+        {
+          "background": "aroundTheFireTogether"
+        }
+      ]
+    },
+    "C4.1_whatsThat": {
+      "scene": "C",
+      "type": "dialogue",
+      "speaker": "Ven",
+      "predialogue": {
+        "text": "L'halfeline désigne le parchemin noirci qui se recroqueville dans le foyer."
+      },
+      "text": "...Une question qui a trouvé une réponse ?",
+      "effects": [
+        {
+          "portraitLeft": "ven_unmasked"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "C4.2_aLetter"
+    },
+    "C4.2_aLetter": {
+      "scene": "C",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "text": [
+        "Au cas où ça aurait mal fini, et où je ne serai pas revenu, j'avais laissé un message pour les autres.",
+        "On ne sait toujours pas ce qui t'attend ni qui est l'imposteur... mais je pense que ce n'est plus nécessaire."
+      ],
+      "choices": [
+        {
+          "text": "Si un changeforme est capable de jouer la comédie à ce point, de toute façon, il n'y a plus rien à faire !",
+          "next": "C4.3_venSmiles"
+        },
+        {
+          "text": "Je trouvais que tu étais un peu trop banale pour notre équipe de monstres de foire. Quand tout sera fini, on pourra rejoindre le cirque des derniers jours ensemble !",
+          "next": "C4.3_venSmiles"
+        },
+        {
+          "text": "Se retirer pour aller dormir.",
+          "narrative": true,
+          "next": "C4.3_wentToBed"
+        }
+      ],
+      "effects": [
+        {
+          "portraitRight": "wyll"
+        }
+      ]
+    },
+    "C4.3_venSmiles": {
+      "scene": "C",
+      "type": "narration",
+      "text": [
+        "Un sourire franc apparaît sur le visage de Ven. Vous réalisez à ce moment combien c'était devenu rare.",
+        "Elle vous adresse un signe de tête reconnaissant, avant de perdre son regard dans la danse des flammèches."
+      ],
+      "effects": [
+        {
+          "portraitRight": "ven_unmasked",
+          "portraitLeft": "party"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "C5_wyllLastWords"
+    },
+    "C4.3_wentToBed": {
+      "scene": "C",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "predialogue": {
+        "text": "Depuis votre paillasse, vous entendez les derniers mots de Wyll à l'intention de votre amie."
+      },
+      "text": [
+        "Tu sais, j'ai mis du temps à accepter ces cornes. Mais j'ai décidé qu'elles n'enlevaient rien à mon charme. Comme des rides ou des cicatrices, elles marquent mes choix et leurs conséquences.",
+        "Tu n'as pas besoin de masque, ni de quelque déguisement que ce soit. La ville regorge d'énergumènes invraisemblables, tu y as parfaitement ta place..."
+      ],
+      "effects": [
+        {
+          "background": "default"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "C5_wyllLastWords"
+    },
+    "C5_wyllLastWords": {
+      "scene": "C",
+      "type": "dialogue",
+      "speaker": "Wyll",
+      "predialogue": {
+        "text": "Wyll se lève, et se tourne vers votre amie avant de partir se coucher."
+      },
+      "text": [
+        "Tu sais, j'ai mis du temps à accepter ces cornes. Mais j'ai décidé qu'elles n'enlevaient rien à mon charme. Comme des rides ou des cicatrices, elles marquent mes choix et leurs conséquences.",
+        "Tu n'as pas besoin de masque, ni de quelque déguisement que ce soit. La ville regorge d'énergumènes invraisemblables, tu y as parfaitement ta place..."
+      ],
+      "effects": [
+        {
+          "portraitRight": "wyll"
+        }
+      ],
+      "callForContinue": true,
+      "autoNext": "C5_venSleeps"
+    },
+    "C5_venSleeps": {
+      "scene": "C",
+      "type": "narration",
+      "text": "...et parfaitement parmi nous.",
+      "effects": [
+        {
+          "background": "venFinallySleeps",
+          "stopSoundtrack": true
+        }
+      ],
+      "autoNext": "C6_goodnight"
+    },
+    "C6_goodnight": {
+      "scene": "C",
+      "type": "narration",
+      "effects": [
+        {
+          "background": "default",
+          "soundEffect": "wakeup_sigh"
+        }
+      ],
+      "end": true
+    }
+  }
+}

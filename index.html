@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+
+  <title>En chasse de soi-même</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div id="app">
+    <div id="background" class="bg-layer"></div>
+    <div id="vignette"></div>
+
+  </div>
+
+  <div id="history-panel" class="hidden">
+    <div class="history-inner">
+      <h3 class="serif">Historique</h3>
+      <div id="history-entries"></div>
+      <button id="close-history">Fermer</button>
+    </div>
+  </div>
+
+
+  <div id="ui-buttons" style="position: fixed; left: 1rem; bottom: 1rem; z-index: 5; display: flex; gap: 0.5rem;">
+    <button id="reset-btn" title="Recommencer" aria-label="Recommencer">&#x21A9;</button>
+    <button id="fullscreen-btn" title="Plein écran" aria-label="Plein écran"><span
+        style="margin-top: -2px">&#x26F6;</span></button>
+    <button id="history-btn" title="Historique">≡</button>
+  </div>
+
+  <div id="dialogue-box">
+    <img id="portrait-left" class="portrait left" src="" alt="" />
+    <img id="portrait-right" class="portrait right" src="" alt="" />
+    <div id="dialogue-inner">
+      <div id="predialogue" class="serif"></div>
+      <div id="speaker" class="serif"></div>
+      <div id="text" class="serif"></div>
+      <div id="choices" class="serif"></div>
+      <div id="continue" class="hidden"><button id="continue-btn">Continuer</button></div>
+    </div>
+  </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

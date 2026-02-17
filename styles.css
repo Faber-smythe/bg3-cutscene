@@ -1,0 +1,321 @@
+/* Fullscreen mode hides all UI except background and vignette */
+.fullscreen-mode #dialogue-box,
+.fullscreen-mode #ui-buttons button:not(#fullscreen-btn),
+.fullscreen-mode #history-panel,
+.fullscreen-mode #portrait-left,
+.fullscreen-mode #portrait-right {
+  display: none !important;
+}
+.fullscreen-mode #background {
+  /* z-index: 1000 !important; */
+}
+/* Dark fantasy full screen UI */
+:root {
+  --bg-color: #08060a;
+  --accent: #c99a48;
+  --muted: #bfb6aa;
+  --glass: rgba(4, 4, 6, 0.55);
+  --panel-radius: 16px;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial;
+}
+body {
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+}
+
+#background {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+  z-index: 0;
+}
+#vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    60% 60% at 50% 80%,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.55) 40%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+  mix-blend-mode: multiply;
+  z-index: 1;
+}
+
+#portraits {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: auto;
+  bottom: calc(4vmin + 1.25rem);
+  pointer-events: none;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 6vmin;
+}
+.portrait {
+  position: absolute;
+  width: 28vmin;
+  max-width: 350px;
+  opacity: 0;
+  transform: translateX(0);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease,
+    filter 0.6s ease;
+  bottom: 0px;
+  pointer-events: none;
+}
+.portrait.left {
+  left: 0;
+  transform: rotateY(180deg);
+}
+.portrait.right {
+  right: 0;
+}
+
+#dialogue-box {
+  position: fixed;
+  left: 6vmin;
+  right: 6vmin;
+  bottom: 4vmin;
+  background: linear-gradient(180deg, rgba(10, 8, 12, 0.6), rgba(4, 4, 6, 0.8));
+  border-radius: var(--panel-radius);
+  padding: 1.25rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 3;
+  border: 1px solid rgba(201, 154, 72, 0.08);
+}
+#dialogue-inner {
+  max-width: calc(100% - 56vmin);
+  margin: 0 auto;
+}
+#dialogue-inner .narration {
+  font-style: italic;
+}
+
+#predialogue p {
+  text-align: center;
+  font-style: italic;
+}
+#speaker {
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.3rem;
+}
+#text {
+  font-size: clamp(18px, 2.4vmin, 22px);
+  color: #efe9df;
+}
+.serif {
+  font-family: "Merriweather", serif;
+}
+
+#choices {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+#choices.single-option button {
+  font-size: 150%;
+}
+#choices button {
+  align-self: center;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+#choices button.narrative {
+  font-style: italic;
+}
+#choices button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(201, 154, 72, 0.08);
+  border-color: rgba(201, 154, 72, 0.18);
+  color: var(--accent);
+}
+
+#ui-buttons button {
+  margin-right: 0.2rem;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+  color: var(--accent);
+  font-size: 1.3rem;
+  border-radius: 100%;
+  border: 1px solid var(--accent);
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+#ui-buttons button:hover {
+  opacity: 0.75;
+}
+
+#continue.hidden {
+  display: none;
+}
+#continue {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+#continue button,
+#close-history {
+  border: 1px solid var(--accent);
+  background: none;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  color: var(--accent);
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+#continue button:hover,
+#close-history:hover {
+  border-color: #e6c57b;
+}
+
+#history-panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  overflow-y: scroll;
+  background: linear-gradient(180deg, rgba(6, 6, 8, 0.9), rgba(6, 6, 8, 0.6));
+  backdrop-filter: blur(8px);
+  z-index: 6;
+  transform: translateY(-100%);
+  transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.2, 1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+#history-panel.show {
+  transform: translateY(0);
+}
+.history-inner {
+  padding: 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  color: #dfd6c6;
+}
+#history-panel h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--accent);
+}
+
+.history-inner hr.history-separator {
+  width: 25%;
+  margin: 0.5em auto;
+  border-color: grey;
+}
+
+.history-entry {
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.03);
+}
+.history-entry .meta {
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+.history-entry p {
+  margin-block-start: 0.8em;
+  margin-block-end: 0.8em;
+}
+
+/* Animations */
+.fade-in-up {
+  animation: fadeUp 0.45s ease forwards;
+}
+.fade-out-up {
+  animation: fadeOutUp 0.35s ease forwards;
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+/* 
+.stagger p {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 0.45s ease forwards;
+}
+.stagger p:nth-child(1) {
+  animation-delay: 0.08s;
+}
+.stagger p:nth-child(2) {
+  animation-delay: 0.18s;
+}
+.stagger p:nth-child(3) {
+  animation-delay: 0.28s;
+}
+.stagger p:nth-child(4) {
+  animation-delay: 0.38s;
+} */
+
+/* Responsive */
+@media (max-width: 720px) {
+  #dialogue-box {
+    left: 3vw;
+    right: 3vw;
+    padding: 1rem;
+    border-radius: 12px;
+  }
+  .portrait {
+    display: none;
+  }
+  #history-panel {
+    height: 65vh;
+  }
+}
