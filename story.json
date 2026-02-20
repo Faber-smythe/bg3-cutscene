@@ -2,7 +2,7 @@
   "meta": {
     "title": "On the hunt for oneself",
     "title_fr": "En chasse de soi-même",
-    "version": "0.1"
+    "version": "0.2"
   },
   "assets": {
     "soundEffects": {
@@ -51,6 +51,7 @@
       "choices": [
         {
           "text": "Commencer ?",
+          "narrative": true,
           "next": "A0"
         }
       ],
@@ -177,7 +178,7 @@
       "type": "dialogue",
       "speaker": "Wyll",
       "text": [
-        "\"Je ne suis pas sûr. Vite, restez derrière moi.\""
+        "Je ne suis pas sûr. Vite, restez derrière moi."
       ],
       "callForContinue": true,
       "effects": [
@@ -189,8 +190,7 @@
     },
     "A2_joinWyll_wtf": {
       "scene": "A",
-      "type": "dialogue",
-      "speaker": "Narrator",
+      "type": "narration",
       "text": [
         "Il baisse sa main en vous regardant d'un air interloqué, avant de vous inviter à le suivre."
       ],
@@ -311,7 +311,7 @@
       "scene": "B",
       "type": "dialogue",
       "speaker": "Wyll",
-      "text": "J'aurais préféré que tu prennes les devants. Mais tu choisis de curieuses circonstances pour aller t'isoler.",
+      "text": "J'aurais préféré que tu prennes les devants. Mais tu choisis de curieuses circonstances pour t'isoler.",
       "autoNext": "B1.1_notAlone",
       "effects": [
         {
@@ -543,7 +543,8 @@
             "partyIsRevealed": true
           },
           "text": [
-            "Jaheira m'a dit que tu avais l'air de connaître un des changeformes quand vous avez retrouvé les ménéstrels, puis que tu t'es esquivée. Il n'y a pas qu'à la bataille du cirque que tu n'étais pas là !"
+            "Jaheira m'a dit que tu avais l'air de connaître un des changeformes quand vous avez retrouvé les ménéstrels, puis que tu t'es esquivée.",
+            "On finit par se demander si tu es bien avec nous, à force que tu ne sois pas là !"
           ]
         },
         {
@@ -570,8 +571,8 @@
         "text": "Même dans la pénombre, même dans son armure, Ven semble frémir. Votre esprit tressaille au contact de l'agitation du sien."
       },
       "text": [
-        "Je n'étais pas là ? MOI ? J'ai toujours été là, même quand vous ne le saviez pas ! À patrouiller, à surveiller, à désamorcer...",
-        "Sans moi, il y a longtemps que vous auriez été tués - par une explosion, une ourse-hibou, ou dans votre sommeil par un vampire !"
+        "Je n'étais pas là ? MOI ? J'ai toujours été là, même quand vous ne le saviez pas ! À patrouiller, à surveiller, à désamorcer !",
+        "Sans moi, il y a longtemps que vous auriez été tués... par une explosion, une ourse-hibou - ou dans votre sommeil par un vampire !"
       ],
       "effects": [
         {
@@ -617,7 +618,8 @@
           "if": {
             "partyIsRevealed": true
           },
-          "text": "[ILLITHID] Tenter de sentir des pensées dissimulées.",
+          "text": "Tenter de sentir des pensées dissimulées.",
+          "context": "illithid",
           "narrative": true,
           "set": {
             "pryedOnVen": true
@@ -697,7 +699,7 @@
           "if": {
             "partyIsRevealed": true
           },
-          "text": "Et alors ? Tu as plein de nouveau pouvoirs ? Il te faut au moins 3 cerveaux frais par jours ?",
+          "text": "Et alors ? Tu as plein de nouveau pouvoirs ? Il te faut au moins trois cerveaux frais par jour ?",
           "next": "B5.4_unmasking",
           "set": {
             "unmasked": true
@@ -728,9 +730,11 @@
         "text": "Wyll reprend tout doucement, sentant une faille ouverte au prix d'une blessure."
       },
       "text": "... Et toi ? Qu'est-ce que tu es devenue ...?",
-      "lateSet": {
-        "unmasked": true
-      },
+      "lateSet": [
+        {
+          "unmasked": true
+        }
+      ],
       "effects": [
         {
           "portraitLeft": "wyll"
@@ -742,9 +746,11 @@
       "scene": "B",
       "type": "narration",
       "text": "Vous entendez quelques mots murmurés. Trop bas pour pouvoir les comprendre depuis votre cachette, ou pour deviner de qui ils viennent.",
-      "lateSet": {
-        "unmasked": true
-      },
+      "lateSet": [
+        {
+          "unmasked": true
+        }
+      ],
       "autoNext": "B5.4_unmasking"
     },
     "B5.4_unmasking": {
@@ -785,12 +791,17 @@
           },
           "text": "Venir en renfort à Wyll",
           "narrative": true,
+          "set": {
+            "partyIsRevealed": true
+          },
           "next": "B5join"
         }
       ],
-      "lateSet": {
-        "unmasked": true
-      },
+      "lateSet": [
+        {
+          "unmasked": true
+        }
+      ],
       "effects": [
         {
           "if": {
@@ -847,11 +858,13 @@
       ],
       "choices": [
         {
-          "text": "[CLERC] Par Kelemvor, qu'est-ce que tu es devenue ?",
+          "text": "Par Kelemvor, qu'est-ce que tu es devenue ?",
+          "context": "clerc",
           "next": "B5.5_powers"
         },
         {
-          "text": "[DOMAINE DE LA TEMPÊTE] Toi aussi tu peux voler, maintenant ?",
+          "text": "Toi aussi tu peux voler, maintenant ?",
+          "context": "domaine de la tempête",
           "next": "B5.5_powers"
         },
         {
@@ -939,7 +952,8 @@
           "if": {
             "partyIsRevealed": true
           },
-          "text": "[ENSORCELEUSE] Le pouvoir en soi n'est jamais une mauvaise chose. C'est son usage qui mérite réflexion.",
+          "text": "Le pouvoir en soi n'est jamais une mauvaise chose. C'est son usage qui mérite réflexion.",
+          "context": "ensorceleuse",
           "next": "B6.1_shadowfell"
         },
         {
@@ -1043,7 +1057,8 @@
           "if": {
             "partyIsRevealed": true
           },
-          "text": "[LUSIGNELLE] C'était. Un. Accident.",
+          "text": "C'était. Un. Accident.",
+          "context": "lusignelle",
           "next": "B6.4_ceremorphosis"
         },
         {
@@ -1060,13 +1075,20 @@
           },
           "text": "Sortir à découvert",
           "narrative": true,
+          "set": {
+            "partyIsRevealed": true
+          },
           "next": "B6join"
         },
         {
           "if": {
             "partyIsRevealed": false
           },
-          "text": "[LUSIGNELLE] C'ÉTAIT ! UN ! ACCIDENT !",
+          "text": "C'ÉTAIT ! UN ! ACCIDENT !",
+          "context": "lusignelle",
+          "set": {
+            "partyIsRevealed": true
+          },
           "next": "B6join"
         }
       ],
@@ -1151,7 +1173,8 @@
           "if": {
             "partyIsRevealed": true
           },
-          "text": "[SANS-REPOS] Par nature, les illithids sont dépourvus d'âme au sens où on l'entend. Et je tiens d'une source infaillible que tu disposes toujours de la tienne.",
+          "text": "Par nature, les illithids sont dépourvus d'âme au sens où on l'entend. Et je tiens d'une source infaillible que tu disposes toujours de la tienne.",
+          "context": "sans-repos",
           "next": "B6.6_amI"
         },
         {
@@ -1256,14 +1279,16 @@
           "if": {
             "partyIsRevealed": true
           },
-          "text": "[SANS-REPOS] Ces questions font la valeur d'une simple vie de mortel. Il y a des réponses que même les dieux ignorent.",
+          "text": "Ces questions font la valeur d'une simple vie de mortel. Il y a des réponses que même les dieux ignorent.",
+          "context": "sans-repos",
           "next": "B7_wyllShares"
         },
         {
           "if": {
             "partyIsRevealed": true
           },
-          "text": "[CLÉRESSE DE THALOS] Le changement est toujours un procédé brutal. Il faut accepter qu'une part de nous soit détruite pour que naisse la suivante.",
+          "text": "Le changement est toujours un procédé brutal. Il faut accepter qu'une part de nous soit détruite pour que naisse la suivante.",
+          "context": "cléresse de thalos",
           "next": "B7_wyllShares"
         },
         {
@@ -1492,7 +1517,8 @@
           "if": {
             "partyIsRevealed": true
           },
-          "text": "[PETITES PERSONNES] De toute façon, si tu n'es à la hauteur, on n'est pas de taille non plus.",
+          "text": "De toute façon, si tu n'es à la hauteur, on n'est pas de taille non plus.",
+          "context": "petites personnes",
           "next": "C0_exposition"
         },
         {
@@ -1595,7 +1621,7 @@
           "partyIsRevealed": false
         },
         "text": [
-          "Ven et Wyll se retournent vers vous aussitôt, alerté par le bruit.",
+          "Ven et Wyll se retournent vers vous aussitôt, alertés par le bruit.",
           "Wyll vous jette un regard entendu. La conversation est terminée, l'heure est à l'apaisement."
         ]
       },
@@ -1657,9 +1683,11 @@
           "portraitRight": "scratch"
         }
       ],
-      "lateSet": {
-        "partyIsRevealed": true
-      },
+      "lateSet": [
+        {
+          "partyIsRevealed": true
+        }
+      ],
       "callForContinue": true,
       "autoNext": "C3_backToCamp"
     },

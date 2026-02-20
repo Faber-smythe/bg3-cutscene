@@ -11,7 +11,6 @@ export type NodeType =
   | "system"; // optional (for meta messages, debug, etc.)
 
 export type SpeakerId =
-  | "Narrator"
   | "Ven"
   | "Wyll"
   | "Kholkan"
@@ -70,6 +69,12 @@ export interface TextVariant {
   text: string | string[];
 }
 
+
+export interface SoundEffectSpec {
+  src: string;
+  volume?: number;
+};
+
 /**
  * UI changes requested by a node.
  * These are interpreted by the renderer.
@@ -84,7 +89,12 @@ export interface Effect {
    * Key referencing assets.soundtracks
    */
   soundtrack?: string;
-  soundEffect?: string;
+  soundEffect?: string | string[] | SoundEffectSpec | SoundEffectSpec[];
+
+  /*
+  * Indicating when in the rendering logic the effect should be triggerd
+  */
+  timing?: "nodeStart" | "predialogueStart" | "predialogueEnd" | "textStart" | "textEnd" | "choicesStart" | "callForContinue"
 
   /*
    * How dark the background vignette effect should be
@@ -114,6 +124,7 @@ export interface Effect {
  */
 export interface Choice {
   text: string;
+  context?: string;
   narrative?: boolean;
   next: NodeId;
 
