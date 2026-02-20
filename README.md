@@ -1,25 +1,57 @@
-# En chasse de soi-même — Dialogue cutscene UI
+# 🎭 Narrative Cutscene Engine – v1.0
 
-This is a small vanilla HTML/CSS/JS project implementing a fullscreen dialogue cutscene renderer inspired by Baldur's Gate 3.
+A lightweight, cinematic dialogue engine built in vanilla JavaScript, inspired by modern RPG storytelling systems.
 
-Files
-- [index.html](index.html): Single-page UI shell and DOM elements.
-- [styles.css](styles.css): All styling and animations.
-- [script.js](script.js): Renderer, game state, effects and history handling.
-- [story.json](story.json): Content data (do not edit).
-- [schema.d.ts](schema.d.ts): Reference schema for the data format (do not edit).
+This project simulates branching narrative sequences with animated text, portraits, music transitions, and persistent state — all running entirely client-side.
 
-How to run
-- Open `index.html` in a browser (double-click or serve via a local static server).
+---
 
-Notes
-- All logic is client-side and uses the `story.json` file as source. The start node is `GameFile.start`.
-- If assets referenced in `story.json` are not present locally, the renderer will warn in the console and continue without them (TODO: add placeholder art/audio).
+## ✨ Overview
 
-Implementation details
-- A `GameState` object tracks `currentNodeId`, `flags`, and `history`.
-- `text` and `textVariants[].text` support strings or arrays; arrays render as separate paragraphs with staggered fade-in.
-- Effects supported: `background` (fade), `soundtrack` (crossfade loop), `portraitLeft`/`portraitRight` (fade-in).
-- Choices update `GameState.flags` when they include a `set` block.
-- The history panel (toggle bottom-left) slides down from the top and shows past nodes.
+This engine allows interactive story experiences with:
+
+- Branching dialogue choices
+- Animated text and UI transitions
+- Visual conditional effects
+- Conditional audio effects with timing control
+- URL-based story reconstruction (shareable story state)
+- Dialogue history panel
+
+The system is fully data-driven through a structured JSON game file.
+
+---
+
+## 🎮 Key Features
+
+### 🧠 State-Driven Narrative
+- Flag-based branching logic
+- Early and late node state mutations
+- Conditional text variants
+- Conditional effects and choices
+
+### 🎬 Cinematic Presentation
+- Staggered text reveal animations
+- Portrait transitions with timing control
+- Background fade transitions
+- Vignette intensity control
+- Music crossfades
+- Sound effect triggers
+- Fullscreen mode
+
+### 🔁 Persistent Story Reconstruction
+- URL-encoded progression path
+- Story rebuild on refresh
+- Version checking for compatibility
+
+## 🧱 Technical Stack
+
+- **HTML5**
+- **CSS3**
+- **Vanilla JavaScript (ES6+)**
+- No external libraries
+- No build tools
+- Fully static architecture
+
+---
+
 
