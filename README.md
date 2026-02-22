@@ -21,6 +21,15 @@ The system is fully data-driven through a structured JSON game file.
 
 ---
 
+## 🧱 Technical Stack
+
+- **HTML5**
+- **CSS3**
+- **Vanilla JavaScript (ES6+)**
+- No external libraries
+- No build tools
+- Fully static architecture
+
 ## 🎮 Key Features
 
 ### 🧠 State-Driven Narrative
@@ -42,15 +51,6 @@ The system is fully data-driven through a structured JSON game file.
 - URL-encoded progression path
 - Story rebuild on refresh
 - Version checking for compatibility
-
-## 🧱 Technical Stack
-
-- **HTML5**
-- **CSS3**
-- **Vanilla JavaScript (ES6+)**
-- No external libraries
-- No build tools
-- Fully static architecture
 
 ---
 
