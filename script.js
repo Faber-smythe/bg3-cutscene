@@ -18,15 +18,16 @@ const animSettings = {
   portraitOffsetY: 18,
   portraitEasing: "ease",
   predialogueParagraphStaggerDelay: 500,
-  paragraphFadeDuration: 1300,
+  paragraphFadeDuration: 1000,
   paragraphOffsetY: 12,
-  paragraphStaggerDelay: 1400,
+  paragraphStaggerDelay: 2500,
   choiceFadeDuration: 330,
   choiceOffsetY: 10,
   choiceStaggerDelay: 150,
   continueFadeDuration: 260,
-  pauseAfterPredialogue: 500,
+  pauseAfterPredialogue: 1500,
   pauseAfterText: 50,
+  pauseBeforeAutonext: 1000,
   allowSkipAnimation: true,
 };
 
@@ -518,6 +519,7 @@ function setupSkipHandler(token) {
     const { silent = false, addToHistory = true } = options;
     const node = gameFile.nodes[nodeId];
     if (!node) return console.error("Node not found", nodeId);
+    if (!silent) console.log(GameState);
     GameState.currentNodeId = nodeId;
     renderToken++;
     const myToken = renderToken;
@@ -777,19 +779,24 @@ function setupSkipHandler(token) {
         });
       } else if (!node.callForContinue && node.autoNext) {
         // auto-transition if no call for continue
-        await sleep(animSettings.continueFadeDuration);
+        if (nodeId != "start" && addToHistory) {
+          appendHistory(nodeId, predialogueTextAsArray, null, true);
+          appendHistory(nodeId, contentTextAsArray, node.speaker);
+        }
+        await sleep(animSettings.pauseBeforeAutonext);
         pathArray.push("X");
         renderNode(node.autoNext);
+        return;
       }
     } catch (e) {
       console.error(e);
     }
     if (myToken !== renderToken) return;
+
     if (nodeId != "start" && addToHistory) {
       appendHistory(nodeId, predialogueTextAsArray, null, true);
       appendHistory(nodeId, contentTextAsArray, node.speaker);
     }
-    if (!silent) console.log(GameState);
   }
 
   // --- Story reconstruction from path ---

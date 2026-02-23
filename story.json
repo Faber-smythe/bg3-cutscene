@@ -24,8 +24,10 @@
       "wyllIsUp": "assets/backgrounds/wyll_is_up.jpg",
       "wyllEntersBushes": "assets/backgrounds/wyll_bushes.jpg",
       "venAwaiting": "assets/backgrounds/ven_waiting.jpg",
+      "venUnmasked": "assets/backgrounds/ven_unmasked.jpg",
       "venPowersMasked": "assets/backgrounds/ven_powers_masked.jpg",
       "venPowersUnmasked": "assets/backgrounds/ven_powers_unmasked.jpg",
+      "venBreaks": "assets/backgrounds/ven_breaks.jpg",
       "scratchJoins": "assets/backgrounds/scratch_comes.jpg",
       "theWayback": "assets/backgrounds/back_to_camp.jpg",
       "aroundTheFireTogether": "assets/backgrounds/around_the_fire.jpg",
@@ -183,7 +185,8 @@
       "callForContinue": true,
       "effects": [
         {
-          "portraitRight": "wyll"
+          "portraitRight": "wyll",
+          "timing": "textStart"
         }
       ],
       "autoNext": "A3"
@@ -274,7 +277,7 @@
       "effects": [
         {
           "background": "venAwaiting",
-          "vignetteDarkFactor": 0.7,
+          "vignetteDarkFactor": 0.3,
           "soundtrack": "tensed_exchange"
         }
       ],
@@ -303,7 +306,8 @@
       "effects": [
         {
           "background": "venAwaiting",
-          "portraitRight": "ven_masked"
+          "portraitRight": "ven_masked",
+          "timing": "textStart"
         }
       ]
     },
@@ -315,7 +319,8 @@
       "autoNext": "B1.1_notAlone",
       "effects": [
         {
-          "portraitLeft": "wyll"
+          "portraitLeft": "wyll",
+          "timing": "textStart"
         }
       ]
     },
@@ -351,7 +356,8 @@
       "autoNext": "B2_dangerAround",
       "effects": [
         {
-          "portraitRight": "ven_masked"
+          "portraitRight": "ven_masked",
+          "timing": "textStart"
         }
       ]
     },
@@ -362,7 +368,8 @@
       "text": "Mais le danger est différent maintenant, plus grand que jamais... Il y a trop de choses en jeu pour prendre des risques inutiles",
       "effects": [
         {
-          "portraitLeft": "wyll"
+          "portraitLeft": "wyll",
+          "timing": "textStart"
         }
       ],
       "autoNext": "B2_whatDanger"
@@ -377,14 +384,16 @@
             "partyIsRevealed": true
           },
           "text": [
-            "Peut-être bien que oui... Est-ce que c'est pour moi que vous vous inquiétez ?",
+            "Peut-être bien que oui...",
+            "...Est-ce que c'est pour moi que vous vous inquiétez ?",
             "...ou bien de moi ?"
           ]
         },
         {
           "else": true,
           "text": [
-            "Peut-être bien que oui... Est-ce que c'est pour moi que tu t'inquiètes ?",
+            "Peut-être bien que oui...",
+            "...Est-ce que c'est pour moi que tu t'inquiètes ?",
             " ...ou bien de moi ?"
           ]
         }
@@ -415,7 +424,8 @@
       ],
       "effects": [
         {
-          "portraitRight": "ven_masked"
+          "portraitRight": "ven_masked",
+          "timing": "textStart"
         }
       ],
       "autoNext": "B3_wyllFirstArguments"
@@ -430,7 +440,8 @@
       ],
       "effects": [
         {
-          "portraitLeft": "wyll"
+          "portraitLeft": "wyll",
+          "timing": "textStart"
         }
       ],
       "autoNext": "B3_venNoReply"
@@ -497,7 +508,8 @@
       "effects": [
         {
           "portraitRight": "ven_masked",
-          "portraitLeft": "party"
+          "portraitLeft": "party",
+          "timing": "textStart"
         }
       ],
       "autoNext": "B3join.1"
@@ -526,7 +538,8 @@
       ],
       "effects": [
         {
-          "portraitLeft": "wyll"
+          "portraitLeft": "wyll",
+          "timing": "textStart"
         }
       ]
     },
@@ -543,21 +556,22 @@
             "partyIsRevealed": true
           },
           "text": [
-            "Jaheira m'a dit que tu avais l'air de connaître un des changeformes quand vous avez retrouvé les ménéstrels, puis que tu t'es esquivée.",
-            "On finit par se demander si tu es bien avec nous, à force que tu ne sois pas là !"
+            "Jaheira m'a dit que tu avais l'air étrange après le combat chez les ménéstrels. Tu avais l'air de connaître un des changeformes, puis que tu t'es esquivée !",
+            "On finit par se demander si tu es bien avec nous, à force que tu ne sois pas là !..."
           ]
         },
         {
           "else": true,
           "text": [
-            "Jaheira m'a dit que tu avais l'air de connaître un des changeformes quand vous avez retrouvé les ménéstrels. ",
-            "Et au cirque, lors du premier combat contre les sans-visages ? Tu n'étais pas là !"
+            "Jaheira m'a dit que tu avais l'air étrange après le combat chez les ménéstrels. Tu avais l'air de connaître un des changeformes, puis que tu t'es esquivée !",
+            "Et au cirque, lors du premier combat contre les sans-visages ? Tu n'étais pas là !..."
           ]
         }
       ],
       "effects": [
         {
-          "portraitLeft": "wyll"
+          "portraitLeft": "wyll",
+          "timing": "textStart"
         }
       ],
       "callForContinue": true,
@@ -568,17 +582,20 @@
       "type": "dialogue",
       "speaker": "Ven",
       "predialogue": {
-        "text": "Même dans la pénombre, même dans son armure, Ven semble frémir. Votre esprit tressaille au contact de l'agitation du sien."
+        "text": "Même dans la pénombre, même dans son armure, Ven semble frémir. Votre esprit tressaille au contact de son agitation."
       },
       "text": [
-        "Je n'étais pas là ? MOI ? J'ai toujours été là, même quand vous ne le saviez pas ! À patrouiller, à surveiller, à désamorcer !",
+        "Je n'étais pas là ...? MOI ?",
+        "J'AI TOUJOURS ÉTÉ LÀ, MÊME QUAND VOUS NE LE SAVIEZ PAS ! À patrouiller ! À surveiller ! À désamorcer !",
         "Sans moi, il y a longtemps que vous auriez été tués... par une explosion, une ourse-hibou - ou dans votre sommeil par un vampire !"
       ],
       "effects": [
         {
-          "portraitRight": "ven_masked"
+          "portraitRight": "ven_masked",
+          "timing": "textStart"
         }
       ],
+      "callForContinue": true,
       "autoNext": "B5.1"
     },
     "B5.1": {
@@ -589,8 +606,9 @@
         "text": "L'halfeline prend plusieurs grandes respirations, et poursuit avec une émotion palpable."
       },
       "text": [
-        "Un Éfrit m'a envoyée dans la péninsule de Chult, une jungle que je ne souhaite à personne. En un clin d'oeil, trois mois se sont écoulés. Quand j'ai réapparu, la fête n'avait pas marqué une seule seconde de pause. Et vous n'étiez pas là. Vous. ",
-        "La première personne à m'adresser la parole était une saloperie de bonnet rouge, qui s'est plaint auprès de moi ! Il est venu me dire - à moi ! - que... la puanteur de la Guenaude lui manquait."
+        "Un Éfrit m'a envoyée dans la péninsule de Chult, une jungle que je ne souhaite à personne. En un clin d'œil, trois mois se sont écoulés. Quand j'ai réapparu, la fête n'avait pas marqué une seule seconde de pause.",
+        "...Et vous n'étiez pas là. Vous.",
+        "La première personne à m'adresser la parole était une saloperie de bonnet rouge. Venu se plaindre. Il est venu me dire que... la puanteur de la Guenaude lui manquait - à moi !"
       ],
       "choices": [
         {
@@ -604,7 +622,7 @@
           "if": {
             "partyIsRevealed": true
           },
-          "text": "Et ensuite ?",
+          "text": "Comment ça se fait qu'on ait remarqué ton absence, alors ?",
           "next": "B5.2_confession"
         },
         {
@@ -673,7 +691,7 @@
       "text": [
         "J'ai cru que j'étais folle. Je me suis enfuie vers dans le moulin, plus loin, où se trouvait le cadavre d'un flagelleur mental nouveau-né.",
         "Je voulais sortir de ma tête, je ne pouvais plus y être. Alors je me suis ouvert à la larve astrale offerte par l'Empereur. Plutôt, j'ai arrêté d'y résister.",
-        "C'était libérateur, c'était la solution, j'en ai eu la confirmation intime. Dans le même élan, j'ai mangé plusieurs des parasites que l'on conservait.",
+        "Ça a été libérateur. C'était la solution, j'en ai eu l'intime confirmation. Dans le même élan, j'ai mangé plusieurs des parasites que l'on conservait.",
         "Mais les migraines n'ont pas disparu. Elles sont devenues... agréables."
       ],
       "choices": [
@@ -751,6 +769,7 @@
           "unmasked": true
         }
       ],
+      "callForContinue":true,
       "autoNext": "B5.4_unmasking"
     },
     "B5.4_unmasking": {
@@ -771,7 +790,7 @@
         {
           "else": true,
           "text": [
-            "Ven fait un pas vers Wyll. Elle retire son masque, révélant un visage parcouru de veinules noirâtres, marqué des sympômes de la cérémorphoses. Ses yeux sont devenus des puits d'encre noire.",
+            "Ven fait un pas vers Wyll. Elle retire son masque, révélant un visage parcouru de veinules noirâtres, marqué des sympômes de la cérémorphose. Ses yeux sont devenus des puits d'encre noire.",
             "Elle lève les bras et un chuintement d'énergie psychique se fait entendre, tandis qu'une aura sombre l'enveloppe et la soulève du sol."
           ]
         }
@@ -794,6 +813,7 @@
           "set": {
             "partyIsRevealed": true
           },
+          "callForContinue": true,
           "next": "B5join"
         }
       ],
@@ -804,19 +824,23 @@
       ],
       "effects": [
         {
+          "vignetteDarkFactor": 0.1
+        },
+        {
           "if": {
             "unmasked": true
           },
+          "soundEffect": "ven_flies",
+          "timing":"textEnd",
           "background": "venPowersUnmasked"
         },
         {
           "if": {
             "unmasked": false
           },
+          "soundEffect": "ven_flies",
+          "timing":"textEnd",
           "background": "venPowersMasked"
-        },
-        {
-          "soundEffect": "ven_flies"
         }
       ],
       "autoNext": "B5.5_powers"
@@ -840,9 +864,12 @@
       "autoNext": "B5join.1",
       "effects": [
         {
+          "soundEffect": "ven_holds_blast"
+        },
+        {
           "portraitLeft": "party",
           "portraitRight": "ven_unmasked_powers",
-          "soundEffect": "ven_holds_blast"
+          "timing": "textStart"
         }
       ]
     },
@@ -872,14 +899,15 @@
           "next": "B5.5_powers"
         },
         {
-          "text": "Rester silencieux - mais sur vos gardes.",
+          "text": "Rester silencieux·ses - mais sur vos gardes.",
           "narrative": true,
           "next": "B5.5_powers"
         }
       ],
       "effects": [
         {
-          "portraitLeft": "wyll"
+          "portraitLeft": "wyll",
+          "timing": "textStart"
         }
       ],
       "autoNext": "B5.5_powers"
@@ -925,13 +953,15 @@
           "if": {
             "unmasked": true
           },
-          "portraitRight": "ven_unmasked_powers"
+          "portraitRight": "ven_unmasked_powers",
+          "timing": "textStart"
         },
         {
           "if": {
             "unmasked": false
           },
-          "portraitRight": "ven_masked_powers"
+          "portraitRight": "ven_masked_powers",
+          "timing": "textStart"
         }
       ],
       "callForContinue": true,
@@ -996,7 +1026,8 @@
       "text": "Les monstres sont durs à reconnaître, dernièrement... C'est le moment de ne pas devenir ce que tu chasses.",
       "effects": [
         {
-          "portraitLeft": "wyll"
+          "portraitLeft": "wyll",
+          "timing": "textStart"
         }
       ],
       "autoNext": "B6.1_shadowfell"
@@ -1006,7 +1037,7 @@
       "type": "dialogue",
       "speaker": "Ven",
       "text": [
-        "Je ne pense à rien d'autre...",
+        "J'y pense sans arrêt...",
         "Je n'arrive pas à dormir, c'est pour ça que je viens ici. Je ne me sens plus en sécurité dans ma tête depuis Hautelune, et c'est pire quand je m'endors.",
         "Je crois que je dois me surveiller..."
       ],
@@ -1015,15 +1046,18 @@
           "if": {
             "unmasked": true
           },
-          "portraitRight": "ven_unmasked_powers"
+          "portraitRight": "ven_unmasked_powers",
+          "timing": "textStart"
         },
         {
           "if": {
             "unmasked": false
           },
-          "portraitRight": "ven_masked_powers"
+          "portraitRight": "ven_masked_powers",
+          "timing": "textStart"
         }
       ],
+      "callForContinue": true,
       "autoNext": "B6.2_whatHappensToFriends"
     },
     "B6.2_whatHappensToFriends": {
@@ -1035,7 +1069,7 @@
           "unmasked": true,
           "partyIsRevealed": true
         },
-        "text": "Ven glisse un petit regard perçant à Lusignelle."
+        "text": "Ven glisse un regard perçant à Lusignelle."
       },
       "text": "...Après tout, j'ai vu dans la Gisombre ce qui attend les amies qui peinent à savoir qui elles sont.",
       "choices": [
@@ -1097,13 +1131,15 @@
           "if": {
             "unmasked": true
           },
-          "portraitRight": "ven_unmasked_powers"
+          "portraitRight": "ven_unmasked_powers",
+          "timing": "textStart"
         },
         {
           "if": {
             "unmasked": false
           },
-          "portraitRight": "ven_masked_powers"
+          "portraitRight": "ven_masked_powers",
+          "timing": "textStart"
         }
       ]
     },
@@ -1137,7 +1173,8 @@
       ],
       "effects": [
         {
-          "portraitRight": "ven_unmasked_powers"
+          "portraitRight": "ven_unmasked_powers",
+          "timing": "textStart"
         }
       ]
     },
@@ -1151,9 +1188,11 @@
       "text": "Je n'étais pas là, et je ne sais pas ce qu'il s'est passé après les épreuves de Shar. Mais je suis là, maintenant. Et j'ai l'impression que la situation est très différente... Non ?",
       "effects": [
         {
-          "portraitLeft": "wyll"
+          "portraitLeft": "wyll",
+          "timing": "textStart"
         }
       ],
+      "callForContinue":true,
       "autoNext": "B6.4_ceremorphosis"
     },
     "B6.4_ceremorphosis": {
@@ -1195,7 +1234,7 @@
           "if": {
             "partyIsRevealed": true
           },
-          "text": "L'empereur a fini par réussir à nous transformer : pile au moment où l'on approche à la fois du cerveau méga-suprême dopé à la magie divine et du messie multimillénaire des plus grands chasseurs de céphalopodes à travers le cosmos. Ça sent la bouse.",
+          "text": "L'empereur a fini par réussir à nous transformer ; pile au moment où l'on approche à la fois du cerveau méga-suprême dopé à la magie divine et du messie multimillénaire des plus grands chasseurs de céphalopodes à travers le cosmos. Ça sent la bouse.",
           "next": "B6.6_amI"
         },
         {
@@ -1212,13 +1251,26 @@
           "if": {
             "unmasked": true
           },
-          "portraitRight": "ven_unmasked"
+          "background": "venUnmasked"
         },
         {
           "if": {
             "unmasked": false
           },
-          "portraitRight": "ven_masked"
+          "background": "venAwaiting"
+        }, {
+          "if": {
+            "unmasked": true
+          },
+          "portraitRight": "ven_unmasked",
+          "timing": "textStart"
+        },
+        {
+          "if": {
+            "unmasked": false
+          },
+          "portraitRight": "ven_masked",
+          "timing": "textStart"
         }
       ],
       "autoNext": "B6.5_stillMyself"
@@ -1228,7 +1280,7 @@
       "type": "dialogue",
       "speaker": "Wyll",
       "text": [
-        "Quand j'ai passé un pacte avec une diablesse, j'avais peur d'y perdre mon âme. J'ai mis du temps avant d'en mesurer le coût, et je viens seulement d'en payer le prix.",
+        "Quand j'ai passé un pacte avec une diablesse, j'ai eu peur d'y perdre mon âme. J'ai mis du temps avant d'en mesurer le coût, et je viens seulement d'en payer le prix.",
         "Mais je n'ai jamais cessé d'être moi."
       ],
       "effects": [
@@ -1264,6 +1316,7 @@
           "portraitRight": "ven_masked"
         }
       ],
+      "callForContinue": true,
       "autoNext": "B6.7_amI"
     },
     "B6.7_amI": {
@@ -1279,7 +1332,7 @@
           "if": {
             "partyIsRevealed": true
           },
-          "text": "Ces questions font la valeur d'une simple vie de mortel. Il y a des réponses que même les dieux ignorent.",
+          "text": "Ces questions font la valeur d'une simple vie de mortel - et il y a des réponses que même les dieux ignorent.",
           "context": "sans-repos",
           "next": "B7_wyllShares"
         },
@@ -1309,9 +1362,11 @@
       ],
       "effects": [
         {
+          "vignetteDarkFactor": 0.2,
           "if": {
             "unmasked": true
           },
+          "background": "venBreaks",
           "portraitRight": "ven_unmasked"
         },
         {
@@ -1321,6 +1376,7 @@
           "portraitRight": "ven_masked"
         }
       ],
+      "callForContinue":true,
       "autoNext": "B6.8_choseToStay"
     },
     "B6.8_choseToStay": {
@@ -1370,6 +1426,7 @@
           "portraitLeft": "wyll"
         }
       ],
+      "callForContinue": true,
       "autoNext": "B8_thanks"
     },
     "B8_thanks": {
@@ -1408,9 +1465,11 @@
       ],
       "effects": [
         {
-          "portraitLeft": "wyll"
+          "portraitLeft": "wyll",
+          "timing": "textStart"
         }
       ],
+      "callForContinue":true,
       "autoNext": "B9_together"
     },
     "B8.1_anythingElse": {
@@ -1431,7 +1490,7 @@
           },
           "text": [
             "Vous n'essayez plus de lire dans mon esprit, maintenant ...?",
-            "Lorsqu'on s'est battu contre les sans-visages, sous la Hache Dansante de Danthelon, j'ai reconnu l'un des métamorphes. Il avait pris l'apparence de ma tante. Chelvin...",
+            "Jaheira a raison. Lorsqu'on s'est battus contre les sans-visages, sous la Hache Dansante de Danthelon, j'ai reconnu l'un des métamorphes. Il avait pris l'apparence de ma tante. Chelvin...",
             "...et je savais qu'elle était déjà morte. J'ai abattu son enveloppe mort-vivante lorsque l'on défendait Halsin durant son rituel, près de l'auberge de la dernière lueur."
           ]
         },
@@ -1439,7 +1498,7 @@
           "else": true,
           "text": [
             "...",
-            "Lorsqu'on s'est battu contre les sans-visages, sous la Hache Dansante de Danthelon, j'ai reconnu l'un des métamorphes. Il avait pris l'apparence de ma tante. Chelvin...",
+            "Jaheira a raison. Lorsqu'on s'est battus contre les sans-visages, sous la Hache Dansante de Danthelon, j'ai reconnu l'un des métamorphes. Il avait pris l'apparence de ma tante. Chelvin...",
             "...et je savais qu'elle était déjà morte. J'ai abattu son enveloppe mort-vivante lorsque l'on défendait Halsin durant son rituel, près de l'auberge de la dernière lueur."
           ]
         }
@@ -1460,13 +1519,15 @@
           "if": {
             "unmasked": true
           },
-          "portraitRight": "ven_unmasked"
+          "portraitRight": "ven_unmasked",
+          "timing": "textStart"
         },
         {
           "if": {
             "unmasked": false
           },
-          "portraitRight": "ven_masked"
+          "portraitRight": "ven_masked",
+          "timing": "textStart"
         }
       ]
     },
@@ -1476,12 +1537,22 @@
       "textVariants": [
         {
           "if": {
-            "unmasked": false
+            "unmasked": false,
+            "partyIsRevealed":true
           },
           "text": [
-            "Ven retire lentement son masque. Pour la première fois depuis longtemps, vous voyez son visage. Parcouru de veinules sombres, marqué les cicatrices et les mèches sales de longs mois d'errance dans une jungle lointaine...",
+            "Ven retire lentement son masque. Pour la première fois depuis longtemps, vous voyez son visage. Parcouru de veinules sombres, marqué par les cicatrices et les mèches sales de longs mois d'errance dans une jungle lointaine...",
             "...fatigué par le chagrin.",
             "Elle vous adresse un regard calme."
+          ]
+        },
+        {
+          "if": {
+            "partyIsRevealed":false
+          },
+          "text": [
+            "Un silence passe. À cette distance, impossible de savoir si des paroles ont été murmurées.",
+            "Ven semble adresser à Wyll un regard calme."
           ]
         },
         {
@@ -1490,11 +1561,6 @@
             "La lune accroche une larme sur le visage fatigué de Ven. Une perle sortie des ténèbres de ses yeux.",
             "Elle vous adresse un regard calme."
           ]
-        }
-      ],
-      "effects": [
-        {
-          "portraitRight": "ven_unmasked"
         }
       ],
       "callForContinue": true,
@@ -1517,15 +1583,15 @@
           "if": {
             "partyIsRevealed": true
           },
-          "text": "De toute façon, si tu n'es à la hauteur, on n'est pas de taille non plus.",
-          "context": "petites personnes",
+          "text": "Les cartes sont tellement mauvaises qu'on risque pas de s'en tirer. Autant le faire à plusieurs !",
           "next": "C0_exposition"
         },
         {
           "if": {
             "partyIsRevealed": true
           },
-          "text": "Les cartes sont tellement mauvaises qu'on risque pas de s'en tirer. Autant le faire à plusieurs !",
+          "text": "De toute façon, si tu n'es à la hauteur, on n'est pas de taille non plus.",
+          "context": "petites personnes",
           "next": "C0_exposition"
         }
       ],
@@ -1672,7 +1738,7 @@
         {
           "else": true,
           "text": [
-            "C'est toujours lui qui a raison, pas vrai ? Personne n'oserait rester debout quand il vient nous rechercher pour dormir.",
+            "C'est toujours lui qui a raison, pas vrai ? Personne n'oserait rester debout quand il vient nous rappeler à l'ordre.",
             "C'était vraiment une longue nuit. C'est bien que vous soyez tous venus. "
           ]
         }
@@ -1695,13 +1761,14 @@
       "scene": "C",
       "type": "narration",
       "text": [
-        "Vous prenez le chemin du retour dans une curieuse atmosphère. Peu de réponses ont été trouvées, pour beaucoup de questions.",
-        "Pourtant, vous sentez que la tension des derniers jours est retombée chez Ven, comme un écho prometteur du début de vos aventures...",
+        "Vous prenez le chemin du retour dans une curieuse atmosphère. En fin de compte, peu de réponses furent trouvées.",
+        "Pourtant, en partageant ses questions, vous sentez que la tension des derniers jours est retombée chez Ven, comme un écho prometteur du début de vos aventures...",
         "Et, peut-être, d'une confiance renouvelée ?"
       ],
       "effects": [
         {
-          "background": "theWayback"
+          "background": "theWayback",
+          "vignetteDarkFactor": 0
         }
       ],
       "callForContinue": true,
@@ -1721,14 +1788,15 @@
           "next": "C4.2_aLetter"
         },
         {
-          "text": "Se rapprocher du feu pour laisser Ven s'asseoir à côté de Wyll",
+          "text": "Se réchauffer près du feu en silence.",
           "narrative": true,
           "next": "C4.1_whatsThat"
         }
       ],
       "effects": [
         {
-          "background": "aroundTheFireTogether"
+          "background": "aroundTheFireTogether",
+          "vignetteDarkFactor": 0.5
         }
       ]
     },
@@ -1742,7 +1810,8 @@
       "text": "...Une question qui a trouvé une réponse ?",
       "effects": [
         {
-          "portraitLeft": "ven_unmasked"
+          "portraitLeft": "ven_unmasked",
+          "timing": "textStart"
         }
       ],
       "callForContinue": true,
@@ -1752,6 +1821,7 @@
       "scene": "C",
       "type": "dialogue",
       "speaker": "Wyll",
+      "predialogue":{"text":"Après quelques secondes, Wyll laisse tomber son regard en direction de Ven."},
       "text": [
         "Au cas où ça aurait mal fini, et où je ne serai pas revenu, j'avais laissé un message pour les autres.",
         "On ne sait toujours pas ce qui t'attend ni qui est l'imposteur... mais je pense que ce n'est plus nécessaire."
@@ -1762,7 +1832,7 @@
           "next": "C4.3_venSmiles"
         },
         {
-          "text": "Je trouvais que tu étais un peu trop banale pour notre équipe de monstres de foire. Quand tout sera fini, on pourra rejoindre le cirque des derniers jours ensemble !",
+          "text": "Je trouvais que tu étais un peu trop banale pour notre équipe de monstres de foire. Quand ça sera fini, on pourra tous rejoindre le cirque des derniers jours !",
           "next": "C4.3_venSmiles"
         },
         {
@@ -1773,7 +1843,8 @@
       ],
       "effects": [
         {
-          "portraitRight": "wyll"
+          "portraitRight": "wyll",
+          "timing": "textStart"
         }
       ]
     },
@@ -1787,7 +1858,11 @@
       "effects": [
         {
           "portraitRight": "ven_unmasked",
-          "portraitLeft": "party"
+          "timing": "textStart"
+        },
+        {
+          "portraitLeft": "party",
+          "timing": "textEnd"
         }
       ],
       "callForContinue": true,
@@ -1801,8 +1876,8 @@
         "text": "Depuis votre paillasse, vous entendez les derniers mots de Wyll à l'intention de votre amie."
       },
       "text": [
-        "Tu sais, j'ai mis du temps à accepter ces cornes. Mais j'ai décidé qu'elles n'enlevaient rien à mon charme. Comme des rides ou des cicatrices, elles marquent mes choix et leurs conséquences.",
-        "Tu n'as pas besoin de masque, ni de quelque déguisement que ce soit. La ville regorge d'énergumènes invraisemblables, tu y as parfaitement ta place..."
+        "Tu sais, j'ai mis du temps à accepter ces cornes. Mais j'ai décidé qu'elles n'enlevaient rien à mon charme. Comme des rides ou des cicatrices, elles marquent mes choix et font de moi qui je suis.",
+        "Tu n'as pas besoin de masque, ni de quelque déguisement que ce soit. La ville regorge d'énergumènes invraisemblables. Tu y as parfaitement ta place..."
       ],
       "effects": [
         {
@@ -1820,12 +1895,13 @@
         "text": "Wyll se lève, et se tourne vers votre amie avant de partir se coucher."
       },
       "text": [
-        "Tu sais, j'ai mis du temps à accepter ces cornes. Mais j'ai décidé qu'elles n'enlevaient rien à mon charme. Comme des rides ou des cicatrices, elles marquent mes choix et leurs conséquences.",
+        "Tu sais, j'ai mis du temps à accepter ces cornes. Mais j'ai décidé qu'elles n'enlevaient rien à mon charme. Comme des rides ou des cicatrices, elles marquent mes choix et font de moi qui je suis.",
         "Tu n'as pas besoin de masque, ni de quelque déguisement que ce soit. La ville regorge d'énergumènes invraisemblables, tu y as parfaitement ta place..."
       ],
       "effects": [
         {
-          "portraitRight": "wyll"
+          "portraitRight": "wyll",
+          "timing": "textStart"
         }
       ],
       "callForContinue": true,
@@ -1834,11 +1910,22 @@
     "C5_venSleeps": {
       "scene": "C",
       "type": "narration",
+      "effects": [
+        {
+          "background": "default",
+          "stopSoundtrack": true,
+          "vignetteDarkFactor": 0.5
+        }
+      ],
+      "autoNext": "C5.1_venSleeps"
+    },
+    "C5.1_venSleeps": {
+      "scene": "C",
+      "type": "narration",
       "text": "...et parfaitement parmi nous.",
       "effects": [
         {
-          "background": "venFinallySleeps",
-          "stopSoundtrack": true
+          "background": "venFinallySleeps"
         }
       ],
       "autoNext": "C6_goodnight"
