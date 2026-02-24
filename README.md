@@ -3,9 +3,9 @@
 A lightweight, cinematic dialogue engine built in vanilla JavaScript, inspired by modern RPG storytelling systems.
 
 This project simulates branching narrative sequences with animated text, portraits, music transitions, and persistent state — all running entirely client-side.
+Demo available [here](https://Faber-smythe.github.io/bg3-cutscene/)
 
 ---
-Demo available [here](https://Faber-smythe.github.io/bg3-cutscene/)
 
 ## ✨ Overview
 
