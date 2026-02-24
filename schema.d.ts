@@ -43,6 +43,7 @@ export interface GameState {
  * For now we only track partyIsRevealed, but schema allows more later.
  */
 export interface StateFlags {
+  if?: Condition;
   partyIsRevealed?: boolean | undefined;
   pryedOnVen?: boolean | undefined;
   unmasked?: boolean | undefined;
@@ -100,6 +101,11 @@ export interface Effect {
    * How dark the background vignette effect should be
    */
   vignetteDarkFactor?: number;
+
+  /*
+   * How narrow the background vignette effect should be
+   */
+  vignetteIntensity?: number;
 
   /**
    * Portrait keys referencing assets.portraits

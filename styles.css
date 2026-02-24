@@ -44,16 +44,37 @@ body {
   overflow: hidden;
 }
 
-#background {
+#background-container {
   position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.bg-layer {
+  position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
+  opacity: 0;
+  transform: translateX(0) scale(1);
   transition:
     opacity 0.8s ease,
-    transform 0.8s ease;
-  z-index: 0;
+    transform 1.2s ease; /* longer for smooth zoom */
+  will-change: opacity, transform;
 }
+
+.bg-layer.active {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+.bg-slide-left {
+  transform: translateX(-40px) scale(1.05);
+}
+.bg-slide-right {
+  transform: translateX(40px) scale(0.95);
+}
+
 #vignette {
   position: fixed;
   inset: 0;
@@ -103,7 +124,7 @@ body {
   left: 6vmin;
   right: 6vmin;
   bottom: 4vmin;
-  background: linear-gradient(180deg, rgba(10, 8, 12, 0.6), rgba(4, 4, 6, 0.8));
+  background: linear-gradient(180deg, rgba(10, 8, 12, 0.5), rgba(3, 3, 5, 0.7));
   border-radius: var(--panel-radius);
   padding: 1.25rem;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
@@ -128,8 +149,8 @@ body {
 }
 #predialogue p {
   text-align: center;
-  font-style: italic;font-size: clamp(16px, 2.2vmin, 22px);
-  
+  font-style: italic;
+  font-size: clamp(16px, 2.2vmin, 22px);
 }
 #speaker {
   color: var(--accent);
@@ -154,7 +175,7 @@ body {
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.4rem;
 }
 #choices.single-option button {
   font-size: 150%;
@@ -173,17 +194,19 @@ body {
 #choices button.narrative *:not(.context) {
   font-style: italic;
 }
-#choices button:hover {
-  transform: translateY(-3px);
+#choices button span {
+  transition: all 0.18s ease;
+}
+#choices button:hover span {
   box-shadow: 0 6px 18px rgba(201, 154, 72, 0.08);
   border-color: rgba(201, 154, 72, 0.18);
   color: var(--accent);
 }
 #choices button .context {
   text-transform: uppercase;
-  transition: filter 0.2s ease;
+  transition: filter 0.2s ease, color 0.2s ease;
 }
-#choices button .context:hover {
+#choices button:hover .context {
   filter: brightness(1.3);
 }
 

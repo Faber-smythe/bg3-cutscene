@@ -21,7 +21,7 @@ const animSettings = {
   paragraphFadeDuration: 1000,
   paragraphOffsetY: 12,
   paragraphStaggerDelay: 2500,
-  choiceFadeDuration: 330,
+  choiceFadeDuration: 750,
   choiceOffsetY: 10,
   choiceStaggerDelay: 150,
   continueFadeDuration: 260,
@@ -115,9 +115,19 @@ function setupSkipHandler(token) {
   }
 }
 
+function addNoBreakSpaces(text) {
+  return text
+    .replaceAll(" ?", "&nbsp;?")
+    .replaceAll(" !", "&nbsp;!")
+    .replaceAll(" :", "&nbsp;:")
+    .replaceAll(" ;", "&nbsp;;")
+    .replaceAll(" - ", "&nbsp;-&nbsp;");
+}
+
 // Game engine for BG3 cutscene
 (function () {
-  const bg = document.getElementById("background");
+  const bgA = document.getElementById("bg-a");
+  const bgB = document.getElementById("bg-b");
   const vignette = document.getElementById("vignette");
   const speakerEl = document.getElementById("speaker");
   const predialogueEl = document.getElementById("predialogue");
@@ -147,6 +157,10 @@ function setupSkipHandler(token) {
   continueWrap.style.transition = `height ${dialogueGrowthDuration}ms ease`;
 
   let gameFile = null;
+
+  let activeBg = bgA;
+  let inactiveBg = bgB;
+
   const premiseFlags = {};
   let GameState = {
     currentNodeId: null,
@@ -256,41 +270,60 @@ function setupSkipHandler(token) {
       const elseV = node.textVariants.find((v) => v.else);
       if (elseV) return elseV.text;
     }
-    return node.text || "";
+    return node.text || null;
   }
 
   function asArray(t) {
-    if (t == null) return [];
+    if (t == null || t == undefined) return [];
     return Array.isArray(t) ? t : [t];
   }
 
   function setBackground(key, options = {}) {
     if (!gameFile.assets?.backgrounds) return;
+
     const map = gameFile.assets.backgrounds;
     const path = map[key];
-    if (!path) {
-      console.warn("background asset missing for", key);
+    if (!path) return;
+    if (activeBg.style.backgroundImage.includes(path)) return;
+
+    if (options.instant) {
+      activeBg.style.transition = "none";
+      activeBg.style.backgroundImage = `url("${path}")`;
+      activeBg.classList.add("active");
+      inactiveBg.classList.remove("active");
       return;
     }
-    if (bg.style.backgroundImage.includes(path)) return;
-    if (options.instant) {
-      bg.style.transition = "none";
-      bg.style.opacity = "1";
-      bg.style.backgroundImage = `url("${path}")`;
-    } else {
-      const img = new Image();
-      const { backgroundFadeDuration, backgroundEasing } = animSettings;
-      img.onload = () => {
-        // bg.style.transition = `opacity ${backgroundFadeDuration / 1000}s ${backgroundEasing}`; // requires double layer
-        bg.style.transition = `opacity .3s ${backgroundEasing}`;
-        bg.style.opacity = "0";
-        setTimeout(() => {
-          bg.style.backgroundImage = `url("${path}")`;
-          bg.style.opacity = "1";
-        }, 260);
-      };
-      img.src = path;
-    }
+
+    console.log();
+    // Reset inactive layer
+    inactiveBg.classList.remove("bg-slide-left", "active");
+    inactiveBg.style.transition = "none";
+    inactiveBg.style.backgroundImage = `url("${path}")`;
+
+    // Apply starting offset + zoom
+    inactiveBg.classList.add("bg-slide-right");
+
+    // Force reflow so browser registers initial transform
+    void inactiveBg.offsetWidth;
+
+    // Restore transition (fade + slide + zoom)
+    inactiveBg.style.transition = `
+    opacity ${animSettings.backgroundFadeDuration / 1000}s ${animSettings.backgroundEasing},
+    transform ${animSettings.backgroundFadeDuration / 500}s cubic-bezier(0.2, 0.8, 0.2, 1)
+  `;
+
+    // Trigger animation
+    inactiveBg.classList.add("active");
+    inactiveBg.classList.remove("bg-slide-right");
+
+    // Fade out previous layer
+    activeBg.classList.remove("active");
+    activeBg.classList.add("bg-slide-left");
+
+    // Swap layers
+    const temp = activeBg;
+    activeBg = inactiveBg;
+    inactiveBg = temp;
   }
 
   function setPortrait(side, key, options = {}) {
@@ -423,7 +456,8 @@ function setupSkipHandler(token) {
     });
     for (const effect of resolvedEffects) {
       const { instant = false } = options;
-      if (effect.background) setBackground(effect.background, { instant });
+      if (effect.background)
+        setBackground(effect.background, { instant, direction: "left" });
       if (effect.soundtrack) crossfadeAudio(effect.soundtrack, { instant });
       if (effect.soundEffect && !instant) {
         if (Array.isArray(effect.soundEffect)) {
@@ -438,7 +472,10 @@ function setupSkipHandler(token) {
       if (effect.portraitRight)
         setPortrait("right", effect.portraitRight, { instant });
       if (effect.vignetteDarkFactor !== undefined)
-        setVignette(effect.vignetteDarkFactor);
+        setVignette(
+          effect.vignetteDarkFactor,
+          effect.vignetteIntensity ?? null,
+        );
     }
   }
 
@@ -475,13 +512,14 @@ function setupSkipHandler(token) {
     historyEntries.append(div);
   }
 
-  function setVignette(darkFactor) {
-    const opacity = Math.max(0, Math.min(1, darkFactor)) ?? 0.5;
-    const intensity = 0.5;
+  function setVignette(darknessFactor, intensityFactor) {
+    const opacity = Math.max(0, Math.min(1, darknessFactor)) ?? 0.5;
+    const intensity = Math.max(0, Math.min(1, intensityFactor)) ?? 0.5;
+    console.log(intensity);
     vignette.style.background = `radial-gradient(
-			60% 60% at 50% 80%,
+			70% 70% at 50% 50%,
 			rgba(0, 0, 0, 0) 0%,
-			rgba(0, 0, 0, ${opacity * intensity}) 40%,
+			rgba(0, 0, 0, ${opacity / 2}) ${25 + 50 * (1 - intensity)}%,
 			rgba(0, 0, 0, ${opacity}) 100%
 		)`;
   }
@@ -529,8 +567,12 @@ function setupSkipHandler(token) {
 
     // early setting node flags (late setting is at the end of the function)
     if (node.earlySet?.length) {
-      node.earlySet.forEach((flag) => {
-        Object.assign(GameState.flags, flag);
+      node.earlySet.forEach((flagBlock) => {
+        if (!flagBlock.if || matchesCondition(flagBlock.if, GameState.flags)) {
+          const flags = { ...flagBlock };
+          delete flags.if;
+          Object.assign(GameState.flags, flags);
+        }
       });
     }
 
@@ -572,7 +614,8 @@ function setupSkipHandler(token) {
       asArray(node.predialogue.text).forEach((string) => {
         predialogueTextAsArray.push(string);
         const p = document.createElement("p");
-        p.textContent = string;
+        const correctedText = addNoBreakSpaces(string);
+        p.innerHTML = correctedText;
         p.style.opacity = 0;
         predialogueEl.appendChild(p);
         predialogueParagraphs.push(p);
@@ -598,8 +641,10 @@ function setupSkipHandler(token) {
     const textParagraphs = [];
     contentTextAsArray.forEach((p) => {
       const pEl = document.createElement("p");
+      const correctedText = addNoBreakSpaces(p);
       pEl.style.opacity = 0;
-      pEl.textContent = node.type == "narration" ? p : '"' + p + '"';
+      pEl.innerHTML =
+        node.type == "narration" ? correctedText : '"' + correctedText + '"';
       textEl.appendChild(pEl);
       textParagraphs.push(pEl);
     });
@@ -624,12 +669,7 @@ function setupSkipHandler(token) {
         const btn = document.createElement("button");
         btn.style.opacity = 0;
         if (ch.narrative) btn.classList.add("narrative");
-        const correctedText = ch.text
-          .replace(" ?", "&nbsp;?")
-          .replace(" !", "&nbsp;!")
-          .replace(" :", "&nbsp;:")
-          .replace(" ;", "&nbsp;;")
-          .replace(" - ", "&nbsp;-&nbsp;");
+        const correctedText = addNoBreakSpaces(ch.text);
         btn.innerHTML =
           (resolvedChoices.length > 1 ? `${i + 1}. ` : "") +
           (ch.context ? `<span class="context">[${ch.context}]</span> ` : "") +
@@ -637,7 +677,14 @@ function setupSkipHandler(token) {
             ? `<span>${correctedText}</span>`
             : `<span>"${correctedText}"</span>`);
         btn.addEventListener("click", () => {
-          if (ch.set) Object.assign(GameState.flags, ch.set);
+          if (
+            ch.set &&
+            (!ch.set.if || matchesCondition(ch.set.if, GameState.flags))
+          ) {
+            const flags = { ...ch.set };
+            delete flags.if;
+            Object.assign(GameState.flags, flags);
+          }
           pathArray.push(i); // Record choice index (number)
           renderNode(ch.next);
         });
@@ -660,8 +707,12 @@ function setupSkipHandler(token) {
 
     // late setting node flags (early setting is at the start of the function)
     if (node.lateSet?.length) {
-      node.lateSet.forEach((flag) => {
-        Object.assign(GameState.flags, flag);
+      node.lateSet.forEach((flagBlock) => {
+        if (!flagBlock.if || matchesCondition(flagBlock.if, GameState.flags)) {
+          const flags = { ...flagBlock };
+          delete flags.if;
+          Object.assign(GameState.flags, flags);
+        }
       });
     }
 
@@ -819,10 +870,10 @@ function setupSkipHandler(token) {
         error = true;
         break;
       }
-      // Render node in silent mode
-      await renderNode(nodeId, { silent: true });
-      lastRenderedNodeId = nodeId;
-      // Resolve choices
+
+      // ----- last node should not be rendered silently -----
+      // ----- so first resolve next node before rendering -----
+      let nextNodeId = null;
       let resolvedChoices = [];
       if (node.choices) {
         resolvedChoices = node.choices.filter((choice) =>
@@ -842,8 +893,16 @@ function setupSkipHandler(token) {
           break;
         }
         const ch = resolvedChoices[token];
-        if (ch.set) Object.assign(GameState.flags, ch.set);
-        nodeId = ch.next;
+        if (
+          ch.set &&
+          (!ch.set.if || matchesCondition(ch.set.if, GameState.flags))
+        ) {
+          const flags = { ...ch.set };
+          delete flags.if;
+          Object.assign(GameState.flags, flags);
+        }
+
+        nextNodeId = ch.next;
       } else if (node.autoNext) {
         if (pathIdx >= pathArr.length) break;
         const token = pathArr[pathIdx++];
@@ -852,10 +911,15 @@ function setupSkipHandler(token) {
           error = true;
           break;
         }
-        nodeId = node.autoNext;
+        nextNodeId = node.autoNext;
       } else {
         break; // End reached
       }
+
+      // Render node in silent mode
+      await renderNode(nodeId, { silent: true });
+      lastRenderedNodeId = nodeId;
+      nodeId = nextNodeId;
     }
     // After reconstruction, set currentNodeId to last valid node
     GameState.currentNodeId = lastRenderedNodeId;
@@ -875,7 +939,7 @@ function setupSkipHandler(token) {
     GameState.currentNodeId = gameFile.start;
     // Reset UI effects (background, music, portraits)
     if (gameFile.assets?.backgrounds?.default) {
-      bg.style.backgroundImage = `url("${gameFile.assets.backgrounds.intro}")`;
+      setBackground("intro");
     }
     // Stop audio
     stopAudio();
@@ -967,7 +1031,7 @@ function setupSkipHandler(token) {
 
       // Preload background default if any
       if (gameFile.assets?.backgrounds?.intro) {
-        bg.style.backgroundImage = `url("${gameFile.assets.backgrounds.intro}")`;
+        setBackground("intro");
       }
 
       // Story reconstruction logic
