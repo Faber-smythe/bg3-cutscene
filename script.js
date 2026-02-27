@@ -238,6 +238,8 @@ function addNoBreakSpaces(text) {
       if (GameState.currentNodeId) params.set("node", GameState.currentNodeId);
       if (pathArray.length) params.set("path", serializePathParam(pathArray));
       if (gameFile?.meta?.version) params.set("version", gameFile.meta.version);
+      console.log(serializeFlagsParam(premiseFlags))
+      if(premiseFlags) params.set("flags", serializeFlagsParam(premiseFlags))
       const newUrl = location.pathname + "?" + params.toString();
       history.replaceState(null, "", newUrl);
     } catch (e) {
@@ -1004,9 +1006,11 @@ function addNoBreakSpaces(text) {
 
       // Parse URL params
       const params = parseUrlParams();
+      console.log(params.flags)
       // Parse flags param (premise flags)
       if (params.flags) {
         Object.assign(premiseFlags, parseFlagsParam(params.flags));
+        Object.assign(GameState.flags, premiseFlags)
       }
       // Parse path param
       pathArray = params.path ? parsePathParam(params.path) : [];
